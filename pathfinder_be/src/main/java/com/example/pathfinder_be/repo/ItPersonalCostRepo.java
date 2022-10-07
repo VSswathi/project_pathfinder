@@ -10,6 +10,6 @@ import com.example.pathfinder_be.dto.ItPersonnelDto;
 @Repository
 public interface ItPersonalCostRepo extends MongoRepository<ItPersonalCostDto, Integer> {
 
-	Optional<ItPersonnelDto> findById(String id);
+	Optional<ItPersonalCostDto> findById(String id);
 
 }

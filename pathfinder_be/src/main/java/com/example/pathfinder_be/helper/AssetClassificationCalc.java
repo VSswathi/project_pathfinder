@@ -38,6 +38,8 @@ public class AssetClassificationCalc {
 
 	@Autowired
 	CostofTransformationRepo cotRepo;
+
+//It Run Spend without It Personnel
 	
 	public ItRunSpendDto yearBasedCalculation(ItPersonnelDto itp, InputTablesDto inp, CostofTransformationDto cot) {
 	    
@@ -233,7 +235,7 @@ public class AssetClassificationCalc {
 	 obj3.setSoftwareCalculations(softcalc);		
 	return obj3;
 }
-//// Managed Services Asset Classification
+//Managed Services Asset Classification
  public AssetClassificationManagedServicesDto managedCalculation(AssetClassificationManagedServicesDto m, ItRunSpendDto run, InputTablesDto inp, ItSpendCategoriesDto isc) {
 	
 	AssetClassificationManagedServicesDto obj1= new AssetClassificationManagedServicesDto();
@@ -298,11 +300,8 @@ public class AssetClassificationCalc {
 	 obj1.setManaged_servicesCalculations(mangcalc);		
 	return obj1;
 }
-//	
-//	
-// 
-// 
-//// Hosted Cbs Asset Classification
+
+//Hosted Cloud Based Services Asset Classification
  
  public AssetClassificationHostedCbsDto hostedCalculation(AssetClassificationHostedCbsDto host, ItRunSpendDto run, InputTablesDto inp, ItSpendCategoriesDto isc) {
 	
@@ -356,8 +355,8 @@ public class AssetClassificationCalc {
 	 obj1.setHosted_cbsCalculations(hostcalc);		
 	return obj1;
 }
-// 
-// 
+ 
+//It Spend on Assets without personnel
  public AssetClassificationDto itspendcalculation(AssetClassificationHardwareDto h,AssetClassificationSoftwareDto s,AssetClassificationManagedServicesDto m, AssetClassificationHostedCbsDto host) {
 		
 		AssetClassificationDto obj1= new AssetClassificationDto();
@@ -377,7 +376,7 @@ public class AssetClassificationCalc {
  
 		return obj1;
  }
- 
+ //Savings through Optimization Levers
  public SavingsOptimizationDto savingsoptimizationcalculation(AssetClassificationHardwareDto h,AssetClassificationSoftwareDto s,AssetClassificationManagedServicesDto m, AssetClassificationHostedCbsDto host,ItPersonnelDto itp,CostofTransformationDto cot,ItRunSpendDto run) {
 		
 	 SavingsOptimizationDto obj1= new SavingsOptimizationDto();
@@ -423,14 +422,13 @@ public class AssetClassificationCalc {
 		return obj1;
 }
  
- 
+//It Spend on Run Personnel
  public ItSpendOnRunPersonnelDto runpersonnelcalculation(ItPersonnelDto itp, InputTablesDto inp, CostofTransformationDto cot) {
 	    
 	 ItSpendOnRunPersonnelDto obj=new ItSpendOnRunPersonnelDto();
      double itspendonpersonalpercentage=itp.getIt_spend_on_personal_perc()/100;
      double annualinflationpercentage=inp.getAnnual_inflation_perc()/100;
      
-//    obj.setBaseLineYearSpend((long) (inp.getRun_business_value()-(itspendonpersonalpercentage*inp.getRun_business_value())));
      obj.setItspend_baseline(itp.getRun_fte_personal());
     
     

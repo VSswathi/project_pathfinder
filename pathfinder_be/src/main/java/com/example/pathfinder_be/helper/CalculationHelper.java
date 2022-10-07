@@ -18,7 +18,7 @@ import com.example.pathfinder_be.dto.YearBasedTransformationDto;
 public class CalculationHelper {
 
 	
-//Table-1
+//1-Input Tables
 	
 	public InputTablesDto calculateValue(InputTablesDto inp) {
 		InputTablesDto obj=new InputTablesDto();
@@ -43,7 +43,7 @@ public class CalculationHelper {
 	}
 	
 	
-// Table-2	
+//2-It Personnel
 	
 	public ItPersonnelDto calcValue(ItPersonnelDto itp,InputTablesDto inp) {
 		ItPersonnelDto obj7= new ItPersonnelDto();
@@ -73,7 +73,7 @@ public class CalculationHelper {
 		
 	}
 
-//Table-3
+//3-It Personnel Cost
 	
 	public ItPersonalCostDto yearBasedCalculation(ItPersonnelDto itp, ItPersonalCostDto inp) {	   
 		        ItPersonalCostDto obj3=new ItPersonalCostDto();
@@ -130,7 +130,7 @@ public class CalculationHelper {
 		    }
 	
 	
-// Table-4	
+//4-Cost of Transformation
 	
 	public CostofTransformationDto YearBasedTransformation( CostofTransformationDto cot,InputTablesDto inp) {
 		
@@ -174,7 +174,7 @@ public class CalculationHelper {
 	}
 	
 	
-// Table-5	
+//5-It Spend Categories
 	
 	public ItSpendCategoriesDto itspend_categories_calc(ItSpendCategoriesDto isc) {
 		

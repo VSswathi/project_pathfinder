@@ -2,6 +2,7 @@ package com.example.pathfinder_be.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ import com.example.pathfinder_be.dto.ItSpendOnRunPersonnelDto;
 import com.example.pathfinder_be.dto.SavingsOptimizationDto;
 import com.example.pathfinder_be.service.AssetClassificationService;
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/asset")
 public class AssetClassificationController {

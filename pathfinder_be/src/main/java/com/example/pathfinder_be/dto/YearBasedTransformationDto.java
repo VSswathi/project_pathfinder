@@ -9,7 +9,6 @@ import lombok.Data;
 
 public class YearBasedTransformationDto {
 	
-	private String id;
 	private int year;
 	private double cot_spread_perc;
 	private long client_share_value;
