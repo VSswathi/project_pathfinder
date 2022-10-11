@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_saving_optimization")
 public class SavingsOptimizationDto {
-
+	private String id;
 	private long total_saving_levers;
 	private long sum_total_savings;
 	private long total_run_businessit;

@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_itpersonnel_fit_model")
 public class ItPersonnelFitModelDto {
-	
+	private String id;
 	private int client_baseyear;
 	private long client_fte_baseyear;
 	

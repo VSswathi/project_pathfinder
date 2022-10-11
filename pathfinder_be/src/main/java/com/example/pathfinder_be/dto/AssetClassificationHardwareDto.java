@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_asset_classification_hardware")
 public class AssetClassificationHardwareDto {
-
+	private String id;
 	private double perc_split_hardware;
 	private long baseLine_hardware;
 	private float total_eliminateReduc;

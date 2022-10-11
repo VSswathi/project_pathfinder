@@ -86,9 +86,9 @@ public class InputTablesController {
  
 // Table-2
     
-   @PostMapping("/itpersonel/{id}")
-   public ResponseEntity<?> itPersonalFinal(@RequestBody ItPersonnelDto itp,@PathVariable String id) {
-	   ItPersonnelDto input = inpService.it_personal_final(itp,id);
+   @PostMapping("/itpersonel/{inputtablesid}")
+   public ResponseEntity<?> itPersonalFinal(@RequestBody ItPersonnelDto itp,@PathVariable String inputtablesid) {
+	   ItPersonnelDto input = inpService.it_personal_final(itp,inputtablesid);
        return ResponseEntity.ok(input);
    }
    
@@ -96,9 +96,9 @@ public class InputTablesController {
    
 // Table-3   
    
-   @PostMapping("/itpersonelcost/{id}")
-   public ResponseEntity<?> itPersonalCostFinal(@RequestBody ItPersonalCostDto itp,@PathVariable String id) {
-	   ItPersonalCostDto input = inpService.it_personal_cost_final(itp,id);
+   @PostMapping("/itpersonelcost/{itpersonnelid}")
+   public ResponseEntity<?> itPersonalCostFinal(@RequestBody ItPersonalCostDto itp,@PathVariable String itpersonnelid) {
+	   ItPersonalCostDto input = inpService.it_personal_cost_final(itp,itpersonnelid);
        return ResponseEntity.ok(input);
    }
    
@@ -108,9 +108,9 @@ public class InputTablesController {
    
 // Table-4
     
-   @PostMapping("/cost/{id}")
-   public ResponseEntity<CostofTransformationDto> costofTransformation(@RequestBody CostofTransformationDto inp,@PathVariable String id) {
-       CostofTransformationDto cot= inpService.costTransformation_calc(inp,id);
+   @PostMapping("/cost/{inputtablesid}")
+   public ResponseEntity<CostofTransformationDto> costofTransformation(@RequestBody CostofTransformationDto inp,@PathVariable String inputtablesid) {
+       CostofTransformationDto cot= inpService.costTransformation_calc(inp,inputtablesid);
 //       System.out.println(cot.getClient_perc());
        return ResponseEntity.ok(cot);    
        

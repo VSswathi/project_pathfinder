@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_run_it_outsource_costs")
 public class RunItOutsourceCostsDto {
-
+	private String id;
 	private int client_spend_baseyear;
 	private int partner_bill_baseyear;
 	private int total_spend_baseyear;

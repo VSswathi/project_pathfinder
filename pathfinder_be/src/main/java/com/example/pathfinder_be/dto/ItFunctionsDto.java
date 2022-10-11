@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_it_functions")
 public class ItFunctionsDto {
-
+	private String id;
 	private double data_center_itspend_run_perc;
 	private double end_user_computing_itspend_run_perc;
 	private double it_service_desk_itspend_run_perc;

@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_total_outsource_fitshore")
 public class TotalOutsourcingFitshoreDto {
-
+	private String id;
 	private long sum_totoal_outsource_fit;
 	private long sum_onsite_offshore_model;
 	private long sum_cot_partner_share;

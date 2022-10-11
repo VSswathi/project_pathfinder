@@ -9,9 +9,9 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_asset_outsource_onsite")
 public class AssetOutsourceOnsiteDto {
-
-	private List<AssetOutsourceOnsiteYear> outsourceOnsiteCalc;
 	
+	private List<AssetOutsourceOnsiteYear> outsourceOnsiteCalc;
+	private String id;
 	private long sum_total_it_spend;
 	private long sum_cot_partner_share;
 	private long sum_outsource_onsite_only;

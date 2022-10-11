@@ -10,7 +10,7 @@ import lombok.Data;
 @Document(collection="pathfinder_asset_classification_hosted")
 public class AssetClassificationHostedCbsDto {
 
-	
+	private String id;
 	private double perc_split_hosted_cbs;
 	private long baseLine_hosted_cbs;
 	

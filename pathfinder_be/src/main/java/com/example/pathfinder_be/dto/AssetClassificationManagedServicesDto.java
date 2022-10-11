@@ -19,8 +19,8 @@ import lombok.Data;
 public class AssetClassificationManagedServicesDto {
 
 
-
-   private double perc_split_managed_services;
+	private String id;
+    private double perc_split_managed_services;
     private long baseLine_managed_services;
     
     private float total_ishiftleft;

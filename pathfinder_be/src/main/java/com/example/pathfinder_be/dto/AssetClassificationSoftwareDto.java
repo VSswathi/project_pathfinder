@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Document(collection="pathfinder_asset_classification_software")
 public class AssetClassificationSoftwareDto {
-	
+	private String id;
 	private double perc_split_software;
 	private long baseLine_software;
 	private float total_rationalize;
@@ -22,6 +22,5 @@ public class AssetClassificationSoftwareDto {
 	private double total_value_s;
 	
 	private List<AssetClassificationSoftwareYear> softwareCalculations;
-	//ArrayList<ItSpendOnAssetsYearlyDto> itspendcalc;
 
 }

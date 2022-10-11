@@ -10,7 +10,7 @@ import lombok.Data;
 @Document(collection="pathfinder_year_based_outsourcing")
 public class YearBasedOutsourcingDto {
 	
-   
+
 	private int yearLine;
 	private double takeOverPlan;
 	private long infteCumulative;

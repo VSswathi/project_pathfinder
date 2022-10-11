@@ -11,6 +11,7 @@ import lombok.Data;
 @Document(collection="pathfinder_input_tables")
 public class InputTablesDto {
 	
+	private String id;
     private long annual_revenue_for_client;//11,170,000,00
     private double it_spent_perc; //2.5%
     private long it_spent_value;//(annual_revenue_for_client*it_spent_perc)
