@@ -2,8 +2,6 @@ package com.example.pathfinder_be.dto;
 
 
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 
 
 import lombok.Data;

@@ -3,6 +3,7 @@ package com.example.pathfinder_be.controller;
 
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class InputTablesController {
     
    
    
-// Table-1
+//1-pathfinder_input_tables
    
    @PostMapping("/input")
    public ResponseEntity<?> inputTablesFinal(@RequestBody InputTablesDto inp) {
@@ -67,24 +68,19 @@ public class InputTablesController {
        
    }
    
-   @GetMapping("/getlist/{id}")    
-   public ResponseEntity<InputTablesDto> getById(@PathVariable String id) {   
-    Optional<InputTablesDto> inp2 = inpService.getById(id); 
+   @GetMapping("/getinputtables/{inputtablesid}")    
+   public ResponseEntity<InputTablesDto> getByInputTablesId(@PathVariable String inputtablesid) {   
+    Optional<InputTablesDto> inp2 = inpService.getByInputTablesId(inputtablesid); 
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
    
-// @PutMapping("/update/{id}")
-// public ResponseEntity<?> itPersonalCostFinalUpdate(@RequestBody InputTablesDto inp,@PathVariable String id){
-// 	InputTablesDto input = inpService.itPersonal_Calculation_final(inp,id);
-//		return ResponseEntity.ok("updated");
-//
-// }
+   @PutMapping("/updateinputtables/{inputtablesid}")
+   public InputTablesDto updateInputTables(@RequestBody InputTablesDto inp, @PathVariable String inputtablesid)
+   {
+       return inpService.updateInputTables( inp, inputtablesid);
+   }
  
-
- 
- 
- 
-// Table-2
+// 2-pathfinder_it_personnel
     
    @PostMapping("/itpersonel/{inputtablesid}")
    public ResponseEntity<?> itPersonalFinal(@RequestBody ItPersonnelDto itp,@PathVariable String inputtablesid) {
@@ -92,9 +88,13 @@ public class InputTablesController {
        return ResponseEntity.ok(input);
    }
    
+   @GetMapping("/getitpersonel/{itpersonelid}")    
+   public ResponseEntity<ItPersonnelDto> getByitPersonalId(@PathVariable String itpersonelid) {   
+    Optional<ItPersonnelDto> inp2 = inpService.getByitPersonalId(itpersonelid); 
+ 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
+ 	}
    
-   
-// Table-3   
+// 3-pathfinder_it_personnel_cost 
    
    @PostMapping("/itpersonelcost/{itpersonnelid}")
    public ResponseEntity<?> itPersonalCostFinal(@RequestBody ItPersonalCostDto itp,@PathVariable String itpersonnelid) {
@@ -102,24 +102,35 @@ public class InputTablesController {
        return ResponseEntity.ok(input);
    }
    
+   @GetMapping("/getitpersonelcost/{itpersonelcostid}")    
+   public ResponseEntity<ItPersonalCostDto> getByitPersonalCostId(@PathVariable String itpersonelcostid) {   
+    Optional<ItPersonalCostDto> inp2 = inpService.getByitPersonalCostId(itpersonelcostid); 
+ 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
+ 	}
+   
    
     
    
    
-// Table-4
+// 4-pathfinder_cost_of_transformation
     
    @PostMapping("/cost/{inputtablesid}")
    public ResponseEntity<CostofTransformationDto> costofTransformation(@RequestBody CostofTransformationDto inp,@PathVariable String inputtablesid) {
        CostofTransformationDto cot= inpService.costTransformation_calc(inp,inputtablesid);
-//       System.out.println(cot.getClient_perc());
        return ResponseEntity.ok(cot);    
        
    }
+   
+   @GetMapping("/getcost/{costid}")    
+   public ResponseEntity<CostofTransformationDto> getByCostId(@PathVariable String costid) {   
+    Optional<CostofTransformationDto> inp2 = inpService.getByCostId(costid); 
+ 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
+ 	}
     
     
 
     
-// Table 5- Pathfinder benchmark
+// 5-pathfinder_it_spend_categories
 
     @PostMapping("/itspendcat")
     public ResponseEntity<?> itSpendCategories(@RequestBody ItSpendCategoriesDto isc) {
@@ -128,33 +139,23 @@ public class InputTablesController {
         
     }
     
+    @GetMapping("/getitspendcat/{itspendcatid}")    
+    public ResponseEntity<ItSpendCategoriesDto> getByItSpendCatId(@PathVariable String itspendcatid) {   
+     Optional<ItSpendCategoriesDto> inp2 = spendService.getByItSpendCatId(itspendcatid); 
+  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
+  	}
     
+    @GetMapping("/getallitspendcat")    
+    public ResponseEntity<List<ItSpendCategoriesDto>> getAllItSpendCatId() {   
+     List<ItSpendCategoriesDto> inp2 = spendService.getAllItSpendCatId(); 
+  		return new ResponseEntity<List<ItSpendCategoriesDto>>(inp2, HttpStatus.OK);
+  	}
     
+    //6-pathfinder_itrun_spend
     @GetMapping("/itrun/{itpersonnelid1}/{inputtablesid2}/{costtransformationid3}")
     public ResponseEntity<?> itRunSpend_calc(@PathVariable String itpersonnelid1,@PathVariable String inputtablesid2,@PathVariable String costtransformationid3) {
         ItRunSpendDto input = inpService.itRunSpend_calc(itpersonnelid1, inputtablesid2, costtransformationid3);
         return ResponseEntity.ok(input);
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//---------------------------------------------------------------- 
-    //table 1,2,3 
-    
-    
-//  @PostMapping("/fullcal")
-//  public ResponseEntity<?> itPersonalCostFinal(@RequestBody InputTablesDto inp) {
-//  	InputTablesDto input = inpService.itPersonal_Calculation_final(inp);
-//      return ResponseEntity.ok(input);
-//      
-//  }  
 }

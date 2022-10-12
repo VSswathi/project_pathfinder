@@ -1,5 +1,8 @@
 package com.example.pathfinder_be.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,7 @@ public class ItSpendCategoriesService {
 	
 @Autowired
 ItSpendCategoriesRepo spendRepo;
+//5-pathfinder_it_spend_categories
 
 	public ItSpendCategoriesDto itspend_categories_calc(ItSpendCategoriesDto isc) {
 		// TODO Auto-generated method stub
@@ -21,5 +25,17 @@ ItSpendCategoriesRepo spendRepo;
 		
 		return obj6;
 	}
+	
+	public Optional<ItSpendCategoriesDto> getByItSpendCatId(String itspendcatid) {
+		// TODO Auto-generated method stub
+		return spendRepo.findById(itspendcatid);
+	}
+
+	public List<ItSpendCategoriesDto> getAllItSpendCatId() {
+		// TODO Auto-generated method stub
+		return spendRepo.findAll();
+	}
+
+	
 	
 }

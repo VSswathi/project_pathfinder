@@ -8,4 +8,6 @@ import com.example.pathfinder_be.dto.InputTablesDto;
 @Repository
 public interface InputTablesRepo extends MongoRepository<InputTablesDto, String>{
 
+	InputTablesDto findById(InputTablesDto inp);
+
 }

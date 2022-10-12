@@ -3,8 +3,6 @@ package com.example.pathfinder_be.helper;
 import java.util.ArrayList;
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,10 +25,7 @@ import com.example.pathfinder_be.dto.ItSpendOnRunPersonnelDto;
 import com.example.pathfinder_be.dto.ItSpendOnRunPersonnelYear;
 import com.example.pathfinder_be.dto.SavingsOptimizationDto;
 import com.example.pathfinder_be.dto.SavingsOptimizationYear;
-import com.example.pathfinder_be.dto.ItPersonalCostDto;
 import com.example.pathfinder_be.dto.ItPersonnelDto;
-import com.example.pathfinder_be.dto.YearBasedOutsourcingDto;
-import com.example.pathfinder_be.dto.YearBasedTransformationDto;
 import com.example.pathfinder_be.repo.CostofTransformationRepo;
 
 @Component
@@ -39,7 +34,7 @@ public class AssetClassificationCalc {
 	@Autowired
 	CostofTransformationRepo cotRepo;
 
-//It Run Spend without It Personnel
+	 //6-pathfinder_itrun_spend
 	
 	public ItRunSpendDto yearBasedCalculation(ItPersonnelDto itp, InputTablesDto inp, CostofTransformationDto cot) {
 	    
@@ -102,7 +97,7 @@ public class AssetClassificationCalc {
     }
 	
 	
-//Hardware Asset Classification
+	//7-pathfinder_asset_classification_hardware
 	
 	public AssetClassificationHardwareDto hardwareCalculation(AssetClassificationHardwareDto h, ItRunSpendDto run, InputTablesDto inp, ItSpendCategoriesDto isc) {
 		
@@ -113,9 +108,7 @@ public class AssetClassificationCalc {
 		
 		
 		long initial_spend_increase =obj1.getBaseLine_hardware();
-		
-		
-		AssetClassificationHardwareYear asc= new AssetClassificationHardwareYear();
+	
 		
 		
 		double total_eliminate_reducpercentage=0;
@@ -169,7 +162,7 @@ public class AssetClassificationCalc {
 		return obj1;
 	}
 	
-//Software Asset Classification
+	//8-pathfinder_asset_classification_software
 	
  public AssetClassificationSoftwareDto softwareCalculation(AssetClassificationSoftwareDto s, ItRunSpendDto run, InputTablesDto inp, ItSpendCategoriesDto isc) {
 	
@@ -181,8 +174,6 @@ public class AssetClassificationCalc {
 	
 	long initial_spend_increase =obj3.getBaseLine_software();
 	
-	
-	AssetClassificationSoftwareYear asc= new AssetClassificationSoftwareYear();
 	
 	
 	double total_rationalize=0;
@@ -235,7 +226,7 @@ public class AssetClassificationCalc {
 	 obj3.setSoftwareCalculations(softcalc);		
 	return obj3;
 }
-//Managed Services Asset Classification
+	//9-pathfinder_asset_classification_managed
  public AssetClassificationManagedServicesDto managedCalculation(AssetClassificationManagedServicesDto m, ItRunSpendDto run, InputTablesDto inp, ItSpendCategoriesDto isc) {
 	
 	AssetClassificationManagedServicesDto obj1= new AssetClassificationManagedServicesDto();
@@ -245,9 +236,6 @@ public class AssetClassificationCalc {
 	
 	
 	long initial_spend_increase =obj1.getBaseLine_managed_services();
-	
-	
-	AssetClassificationManagedServicesYear asc= new AssetClassificationManagedServicesYear();
 	
 	
 	double total_industrialize_shiftleftpercentage=0;
@@ -301,7 +289,7 @@ public class AssetClassificationCalc {
 	return obj1;
 }
 
-//Hosted Cloud Based Services Asset Classification
+//	10-pathfinder_asset_classification_hosted
  
  public AssetClassificationHostedCbsDto hostedCalculation(AssetClassificationHostedCbsDto host, ItRunSpendDto run, InputTablesDto inp, ItSpendCategoriesDto isc) {
 	
@@ -313,8 +301,6 @@ public class AssetClassificationCalc {
 	
 	long initial_spend_increase =obj1.getBaseLine_hosted_cbs();
 	
-	
-	AssetClassificationHostedCbsYear asc= new AssetClassificationHostedCbsYear();
 	
 	
 	double total_transform_cloud_percentage=0;
@@ -356,7 +342,7 @@ public class AssetClassificationCalc {
 	return obj1;
 }
  
-//It Spend on Assets without personnel
+	//11-pathfinder_asset_total
  public AssetClassificationDto itspendcalculation(AssetClassificationHardwareDto h,AssetClassificationSoftwareDto s,AssetClassificationManagedServicesDto m, AssetClassificationHostedCbsDto host) {
 		
 		AssetClassificationDto obj1= new AssetClassificationDto();
@@ -376,7 +362,7 @@ public class AssetClassificationCalc {
  
 		return obj1;
  }
- //Savings through Optimization Levers
+	//12-pathfinder_saving_optimization
  public SavingsOptimizationDto savingsoptimizationcalculation(AssetClassificationHardwareDto h,AssetClassificationSoftwareDto s,AssetClassificationManagedServicesDto m, AssetClassificationHostedCbsDto host,ItPersonnelDto itp,CostofTransformationDto cot,ItRunSpendDto run) {
 		
 	 SavingsOptimizationDto obj1= new SavingsOptimizationDto();
@@ -388,6 +374,7 @@ public class AssetClassificationCalc {
 		long sum_total_savings=0;
 		long cot_partner_share=0;
 		long total_run_businessit=0;
+		long cot_partner_value=0;
 		
 		for(int i=1;i<=3;i++) {
 			SavingsOptimizationYear  obj2 = new SavingsOptimizationYear();
@@ -400,19 +387,20 @@ public class AssetClassificationCalc {
 		      obj2.setRun_businessit((long) (run.getRunCalc().get(i-1).getYearlyRunRate())-obj2.getTotal_savings_model());
 	
 		      cot_partner_share=obj2.getCot_partner_share();
-		      obj2.setTotal_cot_partner(cot_partner_share+initial_cot_value); 
-		      initial_cot_value=obj2.getTotal_cot_partner();
+		      cot_partner_value=(cot_partner_share+initial_cot_value); 
+		      initial_cot_value=cot_partner_value;
 		      
 		      total_saving_levers =obj2.getTotal_savings_model();
-		      total_cot_partner_share= obj2.getTotal_cot_partner();
+//		      total_cot_partner_share= obj2.getTotal_cot_partner();
 		      
 		      savingcalc.add(obj2);
 		
 		}
 		obj1.setTotal_saving_levers((long) (h.getTotal_value_h()+s.getTotal_value_s()+m.getTotal_value_m()+host.getTotal_value_host()));
+		obj1.setTotal_cot_partner(cot_partner_value);
 		
 		sum_total_savings =(total_saving_levers+total_cot_partner_share);
-		total_run_businessit=(long) (run.getRunCalc().get(0).getYearlyRunRate()-initial_cot_value);
+		total_run_businessit=(long) (run.getRunCalc().get(0).getYearlyRunRate()-sum_total_savings);
 		obj1.setMain_total_run_businessit((long) (run.getRunCalc().get(0).getYearlyRunRate()-total_run_businessit));
 		
 		obj1.setSum_total_savings(sum_total_savings);
@@ -422,7 +410,7 @@ public class AssetClassificationCalc {
 		return obj1;
 }
  
-//It Spend on Run Personnel
+	//13-pathfinder_itspend_run_personnel
  public ItSpendOnRunPersonnelDto runpersonnelcalculation(ItPersonnelDto itp, InputTablesDto inp, CostofTransformationDto cot) {
 	    
 	 ItSpendOnRunPersonnelDto obj=new ItSpendOnRunPersonnelDto();

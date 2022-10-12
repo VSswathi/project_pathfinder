@@ -14,6 +14,7 @@ public class SavingsOptimizationDto {
 	private long sum_total_savings;
 	private long total_run_businessit;
 	private long main_total_run_businessit;
+	private long total_cot_partner;
 	
 	ArrayList<SavingsOptimizationYear> savingsoptimizationcalculation;
 }

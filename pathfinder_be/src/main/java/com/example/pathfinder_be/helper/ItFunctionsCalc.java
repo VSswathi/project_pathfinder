@@ -9,7 +9,7 @@ import com.example.pathfinder_be.dto.ItPersonnelDto;
 @Component
 public class ItFunctionsCalc {
 
-// It Functions
+	//19-pathfinder_it_functions
 
 	public ItFunctionsDto calculateValue(ItFunctionsDto funct,InputTablesDto inp,ItPersonnelDto itp) {
 		ItFunctionsDto obj=funct;

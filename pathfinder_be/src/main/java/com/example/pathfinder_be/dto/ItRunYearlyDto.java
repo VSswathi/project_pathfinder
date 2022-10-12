@@ -1,6 +1,5 @@
 package com.example.pathfinder_be.dto;
 
-import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

@@ -55,7 +55,7 @@ public class RunItOutsourceFteService {
 	@Autowired
 	TotalOutsourcingFitshoreRepo totalRepo;
 	
-	
+	//14-pathfinder_run_it_outsource_fte
 	public RunItOutsourceFteDto runoutsource_calc(String inputtablesid1, String itpersonnelid2,
 			String itpersonnelcostid3) {
 		InputTablesDto obj=inputRepo.findById(inputtablesid1).get();
@@ -67,7 +67,7 @@ public class RunItOutsourceFteService {
         return obj3;  
 	}
 
-	
+	//15-pathfinder_run_it_outsource_costs
 	public RunItOutsourceCostsDto runoutsource_costs_calc(String inputtablesid1, String itpersonnelid2,
 			String itpersonnelcostid3, String runitoutsourcefteid4) {
 		InputTablesDto obj=inputRepo.findById(inputtablesid1).get();
@@ -82,7 +82,7 @@ public class RunItOutsourceFteService {
 	}
 
 
-
+	 //16-pathfinder_itpersonnel_fit_model
 	public ItPersonnelFitModelDto fit_model_calc(String inputtablesid1, String itpersonnelcostid2,
 			String runitoutsourcefteid3, String runitoutsourcecostsid4) {
 		InputTablesDto obj=inputRepo.findById(inputtablesid1).get();
@@ -95,7 +95,7 @@ public class RunItOutsourceFteService {
         
         return obj4;
 	}
-	
+	 //17-pathfinder_asset_outsource_onsite
 	public AssetOutsourceOnsiteDto outsourceOnsiteCalc(String itpersonnelid1, String costoftransid2,
 			String itspendonrunpersonelid3, String runitoutsourcecostsid4) {
 		ItPersonnelDto obj=itpersonalRepo.findById(itpersonnelid1).get();
@@ -108,7 +108,7 @@ public class RunItOutsourceFteService {
         
         return obj4;
 	}
-	
+	 //18-pathfinder_total_outsource_fitshore
 	public TotalOutsourcingFitshoreDto outsource_fit_calc(String itpersonnelid1, String costtransformationid2,
 			String itpersonnelfitmodelid3, String itspendrunpersonnelid4) {
 		

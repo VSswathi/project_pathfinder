@@ -2,25 +2,23 @@ package com.example.pathfinder_be.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.pathfinder_be.dto.AssetClassificationDto;
 import com.example.pathfinder_be.dto.AssetClassificationHardwareDto;
-import com.example.pathfinder_be.dto.AssetClassificationHardwareYear;
 import com.example.pathfinder_be.dto.AssetClassificationHostedCbsDto;
 import com.example.pathfinder_be.dto.AssetClassificationManagedServicesDto;
 import com.example.pathfinder_be.dto.AssetClassificationSoftwareDto;
 import com.example.pathfinder_be.dto.CostofTransformationDto;
 import com.example.pathfinder_be.dto.InputTablesDto;
-import com.example.pathfinder_be.dto.ItPersonalCostDto;
 import com.example.pathfinder_be.dto.ItPersonnelDto;
 import com.example.pathfinder_be.dto.ItRunSpendDto;
 import com.example.pathfinder_be.dto.ItSpendCategoriesDto;
 import com.example.pathfinder_be.dto.ItSpendOnRunPersonnelDto;
 import com.example.pathfinder_be.dto.SavingsOptimizationDto;
 import com.example.pathfinder_be.helper.AssetClassificationCalc;
-import com.example.pathfinder_be.helper.CalculationHelper;
 import com.example.pathfinder_be.repo.AssetClassificationHardwareRepo;
 import com.example.pathfinder_be.repo.AssetClassificationHostedCbsRepo;
 import com.example.pathfinder_be.repo.AssetClassificationManagedServicesRepo;
@@ -71,11 +69,10 @@ public class AssetClassificationService {
 	
 
 
-
+//7-pathfinder_asset_classification_hardware
 	public AssetClassificationHardwareDto hardware_calculation(AssetClassificationHardwareDto h,
 			String itrunspendid2, String inputtablesid3, String itspendcategoriesid4) {
 			
-//		AssetClassificationDto acc= assetRepo.findById(assetclassificationid1).get();
 		ItRunSpendDto run=runRepo.findById(itrunspendid2).get();
 		InputTablesDto inp=inputRepo.findById(inputtablesid3).get();
 		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid4).get();
@@ -85,11 +82,17 @@ public class AssetClassificationService {
         obj3=hardRepo.save(obj3);
         return obj3;   
 	}
-
+	
+	public Optional<AssetClassificationHardwareDto> getByHardwareId(String hardwareid) {
+		// TODO Auto-generated method stub
+		return hardRepo.findById(hardwareid);
+	}
+	
+	
+	//8-pathfinder_asset_classification_software
 	public AssetClassificationSoftwareDto software_calculation(AssetClassificationSoftwareDto s,
 			String itrunspendid2, String inputtablesid3, String itspendcategoriesid4) {
-			
-//		AssetClassificationDto acc= assetRepo.findById(assetclassificationid1).get();
+		
 		ItRunSpendDto run=runRepo.findById(itrunspendid2).get();
 		InputTablesDto inp=inputRepo.findById(inputtablesid3).get();
 		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid4).get();
@@ -99,20 +102,32 @@ public class AssetClassificationService {
         obj3=softRepo.save(obj3);
         return obj3;   
 	}
+	
+	public Optional<AssetClassificationSoftwareDto> getBySoftwareId(String softwareid) {
+	
+		return softRepo.findById(softwareid);
+	}
 
-//
+	//9-pathfinder_asset_classification_managed
 	public AssetClassificationManagedServicesDto managed_calculation(AssetClassificationManagedServicesDto m,
     String itrunspendid1, String inputtablesid2, String itspendcategoriesid3) {
-ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
-InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
-ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
+		
+		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
+		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
+		
+		AssetClassificationManagedServicesDto obj3= help.managedCalculation(m, run, inp, isc);
+		
+		obj3=managedRepo.save(obj3);
+		return obj3;
+	}
+	
+	public Optional<AssetClassificationManagedServicesDto> getByManagedId(String managedid) {
+	
+		return managedRepo.findById(managedid);
+	}
 
-AssetClassificationManagedServicesDto obj3= help.managedCalculation(m, run, inp, isc);
-
-obj3=managedRepo.save(obj3);
-return obj3;
-}
-//
+//10-pathfinder_asset_classification_hosted
 
 
 	public AssetClassificationHostedCbsDto hosted_calculation(AssetClassificationHostedCbsDto host,
@@ -126,6 +141,13 @@ return obj3;
 		obj3=hostedRepo.save(obj3);
 		return obj3;
 	}
+	
+	public Optional<AssetClassificationHostedCbsDto> getByHostedId(String hostedid) {
+		// TODO Auto-generated method stub
+		return hostedRepo.findById(hostedid);
+	}
+	
+	//11-pathfinder_asset_total
 
 	public AssetClassificationDto itSpendAsset_calc(String hardwareid1, String softwareid2, String managedid3,
 			String hostedid4) {
@@ -141,7 +163,7 @@ return obj3;
 		
 		    
 	}
-
+	//12-pathfinder_saving_optimization
 	public SavingsOptimizationDto saving_calculation(String hardwareid1, String softwareid2, String managedid3,
 			String hostedid4, String itpersonelid5, String costtransid6, String itrunspendid7) {
 		AssetClassificationHardwareDto h=hardRepo.findById(hardwareid1).get();
@@ -156,7 +178,7 @@ return obj3;
 		obj2= savingRepo.save(obj2);
 		return obj2;
 	}
-
+	//13-pathfinder_itspend_run_personnel
 	public ItSpendOnRunPersonnelDto runPersonnel_calc(String itpersonnelid1, String inputtablesid2, String costtransformationid3) {
 		 InputTablesDto obj=inputRepo.findById(inputtablesid2).get();
 	        CostofTransformationDto obj1=cotRepo.findById(costtransformationid3).get();
@@ -166,4 +188,11 @@ return obj3;
 	        
 	        return obj3;   
 	}
+
+	
+
+	
+	
+
+	
 }

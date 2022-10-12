@@ -1,5 +1,7 @@
 package com.example.pathfinder_be.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +25,18 @@ public class ItFunctionsService {
   @Autowired
   ItFunctionsCalc helpcalc;
 
-
+	//19-pathfinder_it_functions
 	public ItFunctionsDto it_functions_calc(ItFunctionsDto funct, String inputtableid, String itpersonelid) {
 		InputTablesDto obj=inputRepo.findById(inputtableid).get();
 		ItPersonnelDto obj1=itpersonalRepo.findById(itpersonelid).get();
 		ItFunctionsDto  obj2=helpcalc.calculateValue(funct,obj,obj1);
 		 obj2=functionRepo.save(obj2);
 	     return obj2;
+	}
+
+
+	public Optional<ItFunctionsDto> getByItFunctionsId(String itfunctionid) {
+	
+		return functionRepo.findById(itfunctionid);
 	}
 }

@@ -10,5 +10,5 @@ public class SavingsOptimizationYear {
 	private long cot_partner_share;
 	private long total_savings_model;
 	private long run_businessit;
-	private long total_cot_partner;
+	
 }

@@ -1,8 +1,6 @@
 package com.example.pathfinder_be.service;
 
 
-
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.pathfinder_be.dto.CostofTransformationDto;
 import com.example.pathfinder_be.dto.InputTablesDto;
-import com.example.pathfinder_be.dto.ItSpendCategoriesDto;
 import com.example.pathfinder_be.dto.ItPersonalCostDto;
 import com.example.pathfinder_be.dto.ItPersonnelDto;
 import com.example.pathfinder_be.dto.ItRunSpendDto;
-import com.example.pathfinder_be.dto.YearBasedOutsourcingDto;
 import com.example.pathfinder_be.helper.AssetClassificationCalc;
 import com.example.pathfinder_be.helper.CalculationHelper;
 import com.example.pathfinder_be.repo.CostofTransformationRepo;
@@ -49,7 +45,7 @@ public class InputTablesService {
   ItRunSpendRepo runRepo;
     
     
-// Table-1
+//1-pathfinder_input_tables
 	public InputTablesDto input_tables_final(InputTablesDto inp) {
 		InputTablesDto obj=helper.calculateValue(inp);
 		inputRepo.save(obj);
@@ -57,21 +53,37 @@ public class InputTablesService {
 	}
 	
 	
-	public Optional<InputTablesDto> getById(String id) {
-		return inputRepo.findById(id);
-	}
-
+	public InputTablesDto updateInputTables(InputTablesDto inp, String inputtablesid) {
+		
+        InputTablesDto old=inputRepo.findById(inputtablesid).get();
+		old.setId(inp.getId());
+		old.setAnnual_inflation_perc(inp.getAnnual_inflation_perc());
+		old.setAnnual_revenue_for_client(inp.getAnnual_revenue_for_client());
+		old.setIt_spent_perc(inp.getIt_spent_perc());
+		old.setGrow_business_perc(inp.getGrow_business_perc());
+		old.setTransform_it_perc(inp.getTransform_it_perc());
+		return inputRepo.save(old);
 	
-// Table-2
+	}
+	
+	public Optional<InputTablesDto> getByInputTablesId(String inputtablesid) {
+		return inputRepo.findById(inputtablesid);
+	}
+	
+	
+	// 2-pathfinder_it_personnel
 	public ItPersonnelDto it_personal_final(ItPersonnelDto itp, String id) {
 		InputTablesDto obj=inputRepo.findById(id).get();
 		ItPersonnelDto object=helper.calcValue(itp,obj);
-		 object=itpersonalRepo.save(object);
-	     return object;
+		return object=itpersonalRepo.save(object);
 	}
 	
-	
-//Table-3	
+	public Optional<ItPersonnelDto> getByitPersonalId(String itpersonelid) {
+		// TODO Auto-generated method stub
+		return itpersonalRepo.findById(itpersonelid);
+	}
+
+	// 3-pathfinder_it_personnel_cost 	
 	public ItPersonalCostDto it_personal_cost_final(ItPersonalCostDto icp, String id) {
 		ItPersonnelDto itpc_final=itpersonalRepo.findById(id).get();
 		ItPersonalCostDto  obj3=helper.yearBasedCalculation(itpc_final,icp);
@@ -79,9 +91,15 @@ public class InputTablesService {
 	     return obj3;
 	}
 
+	public Optional<ItPersonalCostDto> getByitPersonalCostId(String itpersonelcostid) {
+		// TODO Auto-generated method stub
+		return costRepo.findById(itpersonelcostid);
+
+	}
+
 	
 
-//Table-4
+	// 4-pathfinder_cost_of_transformation
 	public CostofTransformationDto costTransformation_calc(CostofTransformationDto inp, String id) {
 
 		InputTablesDto obj=inputRepo.findById(id).get();
@@ -89,16 +107,15 @@ public class InputTablesService {
 		 obj4=cotRepo.save(obj4);
 	     return obj4;
 	}
-
-
-
-//	public Optional<CostofTransformationDto> getAllCostId(String id) {
-//		// TODO Auto-generated method stub
-//		return cotRepo.findById(id);
-//	}
-
-
 	
+	public Optional<CostofTransformationDto> getByCostId(String costid) {
+		// TODO Auto-generated method stub
+		return cotRepo.findById(costid);
+	}
+
+
+
+	   //6-pathfinder_itrun_spend
 	
 public ItRunSpendDto itRunSpend_calc(String id1, String id2, String id3) {
         
@@ -113,4 +130,17 @@ public ItRunSpendDto itRunSpend_calc(String id1, String id2, String id3) {
 
 
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 
+
 import org.springframework.stereotype.Component;
 
 import com.example.pathfinder_be.dto.CostofTransformationDto;
@@ -18,7 +19,7 @@ import com.example.pathfinder_be.dto.YearBasedTransformationDto;
 public class CalculationHelper {
 
 	
-//1-Input Tables
+	//1-pathfinder_input_tables
 	
 	public InputTablesDto calculateValue(InputTablesDto inp) {
 		InputTablesDto obj=new InputTablesDto();
@@ -26,7 +27,6 @@ public class CalculationHelper {
 		double growBusinesspercentage=inp.getGrow_business_perc()/100;
 		double transformItpercentage=inp.getTransform_it_perc()/100;
 		double itSpentpercentage=inp.getIt_spent_perc()/100;
-		double annualInflationpercentage=inp.getAnnual_inflation_perc()/100;
 	
 		obj.setRun_business_perc(inp.getRun_business_perc());
      	obj.setGrow_business_perc(inp.getGrow_business_perc());
@@ -43,7 +43,7 @@ public class CalculationHelper {
 	}
 	
 	
-//2-It Personnel
+	// 2-pathfinder_it_personnel
 	
 	public ItPersonnelDto calcValue(ItPersonnelDto itp,InputTablesDto inp) {
 		ItPersonnelDto obj7= new ItPersonnelDto();
@@ -73,7 +73,7 @@ public class CalculationHelper {
 		
 	}
 
-//3-It Personnel Cost
+	// 3-pathfinder_it_personnel_cost 
 	
 	public ItPersonalCostDto yearBasedCalculation(ItPersonnelDto itp, ItPersonalCostDto inp) {	   
 		        ItPersonalCostDto obj3=new ItPersonalCostDto();
@@ -98,7 +98,6 @@ public class CalculationHelper {
 		            i.setYearLine(obj2.getYearLine());
 		            double takeoverplanpercentage=i.getTakeOverPlan()/100;
 		            double ppimprovementpercentage=i.getPpImprovement()/100;
-		            double offshoreratiopercentage1=i.getOffshoreRatio()/100;
 		            double onsiteratiopercentage1=i.getOnsiteRatio()/100;
 
 
@@ -130,7 +129,7 @@ public class CalculationHelper {
 		    }
 	
 	
-//4-Cost of Transformation
+	// 4-pathfinder_cost_of_transformation
 	
 	public CostofTransformationDto YearBasedTransformation( CostofTransformationDto cot,InputTablesDto inp) {
 		
@@ -174,17 +173,11 @@ public class CalculationHelper {
 	}
 	
 	
-//5-It Spend Categories
+	// 5-pathfinder_it_spend_categories
 	
 	public ItSpendCategoriesDto itspend_categories_calc(ItSpendCategoriesDto isc) {
 		
 		ItSpendCategoriesDto obj6=new ItSpendCategoriesDto();
-		
-		
-		double hardwareperc=isc.getHardware()/100;
-		double softwareperc=isc.getSoftware()/100;
-		double hostedcbsperc=isc.getHosted_cbs()/100;
-		double managedservicesperc=isc.getManagedServices()/100;
 		
 		obj6.setHardware(isc.getHardware());
 		obj6.setSoftware(isc.getSoftware());
