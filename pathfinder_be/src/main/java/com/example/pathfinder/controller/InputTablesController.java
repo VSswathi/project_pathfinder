@@ -57,19 +57,19 @@ public class InputTablesController {
        
    }
    
-   @GetMapping("/inputtables/{inputtablesid}")    
+   @GetMapping("/inputvalues/{inputtablesid}")    
    public ResponseEntity<InputTablesDto> getByInputTablesId(@PathVariable String inputtablesid) {   
     Optional<InputTablesDto> inp2 = inpService.getByInputTablesId(inputtablesid); 
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
    
-   @GetMapping("/inputtables")    
+   @GetMapping("/inputvalues")    
    public ResponseEntity<List<InputTablesDto>> getAllInputTables() {   
     List<InputTablesDto> inp2 = inpService.getAllInputTables(); 
  		return new ResponseEntity<List<InputTablesDto>>(inp2, HttpStatus.OK);
  	}
    
-   @PutMapping("/inputtables/{inputtablesid}")
+   @PutMapping("/inputvalues/{inputtablesid}")
    public InputTablesDto updateInputTables(@RequestBody InputTablesDto inp, @PathVariable String inputtablesid)
    {
        return inpService.updateInputTables( inp, inputtablesid);
