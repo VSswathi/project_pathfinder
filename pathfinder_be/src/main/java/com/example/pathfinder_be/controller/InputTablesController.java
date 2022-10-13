@@ -93,6 +93,12 @@ public class InputTablesController {
     Optional<ItPersonnelDto> inp2 = inpService.getByitPersonalId(itpersonelid); 
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
+   @PutMapping("/updateitpersonel/{itpersonelid}")
+   public ItPersonnelDto updateItPersonnel(@RequestBody ItPersonnelDto itp, @PathVariable String itpersonelid)
+   {
+       return inpService.updateItPersonnel( itp, itpersonelid);
+   }
+
    
 // 3-pathfinder_it_personnel_cost 
    
@@ -108,10 +114,12 @@ public class InputTablesController {
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
    
-   
+   @PutMapping("/updateitpersonelcost/{itpersonelcostid}/{itpersonnelid}")
+   public ItPersonalCostDto updateItPersonnelCost(@RequestBody ItPersonalCostDto ipc, @PathVariable String itpersonelcostid,@PathVariable String itpersonnelid)
+   {
+       return inpService.updateItPersonnelCost( ipc, itpersonelcostid,itpersonnelid);
+   }
     
-   
-   
 // 4-pathfinder_cost_of_transformation
     
    @PostMapping("/cost/{inputtablesid}")

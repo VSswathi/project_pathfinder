@@ -11,6 +11,7 @@ import com.example.pathfinder_be.dto.InputTablesDto;
 import com.example.pathfinder_be.dto.ItPersonalCostDto;
 import com.example.pathfinder_be.dto.ItPersonnelDto;
 import com.example.pathfinder_be.dto.ItRunSpendDto;
+import com.example.pathfinder_be.dto.YearBasedOutsourcingDto;
 import com.example.pathfinder_be.helper.AssetClassificationCalc;
 import com.example.pathfinder_be.helper.CalculationHelper;
 import com.example.pathfinder_be.repo.CostofTransformationRepo;
@@ -79,8 +80,16 @@ public class InputTablesService {
 	}
 	
 	public Optional<ItPersonnelDto> getByitPersonalId(String itpersonelid) {
-		// TODO Auto-generated method stub
 		return itpersonalRepo.findById(itpersonelid);
+	}
+	
+	public ItPersonnelDto updateItPersonnel(ItPersonnelDto itp, String itpersonelid) {
+		ItPersonnelDto old1=itpersonalRepo.findById(itpersonelid).get();
+		old1.setId(itp.getId());
+		old1.setIt_spend_on_personal_perc(itp.getIt_spend_on_personal_perc());
+		old1.setAvr_ctc_per_fte(itp.getAvr_ctc_per_fte());
+		old1.setPerc_eligible_forpersonal(itp.getPerc_eligible_forpersonal());
+		return itpersonalRepo.save(old1);
 	}
 
 	// 3-pathfinder_it_personnel_cost 	
@@ -92,9 +101,32 @@ public class InputTablesService {
 	}
 
 	public Optional<ItPersonalCostDto> getByitPersonalCostId(String itpersonelcostid) {
-		// TODO Auto-generated method stub
 		return costRepo.findById(itpersonelcostid);
 
+	}
+
+	public ItPersonalCostDto updateItPersonnelCost(ItPersonalCostDto ipc, String itpersonelcostid,String itpersonnelid) {
+		ItPersonalCostDto old2=costRepo.findById(itpersonelcostid).get();
+		ItPersonnelDto itpc_final=itpersonalRepo.findById(itpersonnelid).get();
+		
+		//old2=helper.yearBasedCalculation(null, old2);
+		old2.setId(ipc.getId());
+		
+		old2.setOffshoreRatio(ipc.getOffshoreRatio());
+		old2.setOnsitRatio(ipc.getOnsitRatio());
+		old2.setPartnerCtcOnsite(ipc.getPartnerCtcOnsite());
+		old2.setPartnerCtcOffshore(ipc.getPartnerCtcOffshore());
+//		
+ 	old2.setYearBseCalculations(helper.yearBasedCalculation(itpc_final, ipc).getYearBseCalculations());
+//		int i=0;
+//		for(YearBasedOutsourcingDto call: old2.getYearBseCalculations()) {
+//			call.setYearLine(ipc.getYearBseCalculations().get(i).getYearLine());
+//			call.setTakeOverPlan(ipc.getYearBseCalculations().get(i).getTakeOverPlan());
+//			
+//			
+//			i++;
+//		}
+		return costRepo.save(old2);
 	}
 
 	
@@ -130,6 +162,10 @@ public ItRunSpendDto itRunSpend_calc(String id1, String id2, String id3) {
 
 
    }
+
+
+
+
 
 
 

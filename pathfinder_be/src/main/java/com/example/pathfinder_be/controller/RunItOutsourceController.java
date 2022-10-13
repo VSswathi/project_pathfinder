@@ -22,7 +22,7 @@ public class RunItOutsourceController {
 	@Autowired
 	RunItOutsourceFteService runitService;
 	//14-pathfinder_run_it_outsource_fte
-	 @GetMapping("/runpersonnel/{inputtablesid1}/{itpersonnelid2}/{itpersonnelcostid3}")
+	 @GetMapping("/runfte/{inputtablesid1}/{itpersonnelid2}/{itpersonnelcostid3}")
 	    public ResponseEntity<?> runit_calc(@PathVariable String inputtablesid1,@PathVariable String itpersonnelid2,@PathVariable String itpersonnelcostid3) {
 		 RunItOutsourceFteDto input = runitService.runoutsource_calc(inputtablesid1, itpersonnelid2, itpersonnelcostid3);
 	        return ResponseEntity.ok(input);
