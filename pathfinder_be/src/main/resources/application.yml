@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: pathfinder
+    
+server:
+  servlet:
+    context-path: /pathfinder
+  port: 8100
+  
+springdoc:
+  swagger-ui:
+    path: /swagger
+    operationsSorter: method
