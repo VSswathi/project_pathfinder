@@ -3,6 +3,7 @@ package com.example.pathfinder_be.controller;
 import java.util.Optional;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,11 +49,18 @@ public class AssetClassificationController {
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
 	
-
+	@PutMapping("/updatehardware/{hardwareid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+    public AssetClassificationHardwareDto updateHardware(@RequestBody AssetClassificationHardwareDto h, @PathVariable String hardwareid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
+    {
+        return assetService.updateHardware(h,hardwareid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
+    }
+	
+	
+	
 	//8-pathfinder_asset_classification_software
 	@PostMapping("/software/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
-	public ResponseEntity<AssetClassificationSoftwareDto> software_calc(@RequestBody AssetClassificationSoftwareDto h,  @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3) {
-    	AssetClassificationSoftwareDto val = assetService.software_calculation(h,itrunspendid1,inputtablesid2,itspendcategoriesid3);
+	public ResponseEntity<AssetClassificationSoftwareDto> software_calc(@RequestBody AssetClassificationSoftwareDto s,  @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3) {
+    	AssetClassificationSoftwareDto val = assetService.software_calculation(s,itrunspendid1,inputtablesid2,itspendcategoriesid3);
         return ResponseEntity.ok(val);
         
     }
@@ -61,6 +70,11 @@ public class AssetClassificationController {
 	    Optional<AssetClassificationSoftwareDto> inp2 = assetService.getBySoftwareId(softwareid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
+	@PutMapping("/updatesoftware/{softwareid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+    public AssetClassificationSoftwareDto updateSoftware(@RequestBody AssetClassificationSoftwareDto s, @PathVariable String softwareid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
+    {
+        return assetService.updateSoftware(s,softwareid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
+    }
 	
 	//9-pathfinder_asset_classification_managed
 	@PostMapping("/managed/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
@@ -76,6 +90,12 @@ public class AssetClassificationController {
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
 	
+	@PutMapping("/updatemanagedservices/{managedid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+    public AssetClassificationManagedServicesDto updateManagedServices(@RequestBody AssetClassificationManagedServicesDto m, @PathVariable String managedid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
+    {
+        return assetService.updateManagedServices(m,managedid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
+    }
+	
 //	10-pathfinder_asset_classification_hosted
 	@PostMapping("/hosted/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public ResponseEntity<AssetClassificationHostedCbsDto> hosted_calc(@RequestBody AssetClassificationHostedCbsDto host,  @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3) {
@@ -89,6 +109,12 @@ public class AssetClassificationController {
 	    Optional<AssetClassificationHostedCbsDto> inp2 = assetService.getByHostedId(hostedid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
+	
+	@PutMapping("/updatehostedcbs/{hostedid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+    public AssetClassificationHostedCbsDto updateHostedcbs(@RequestBody AssetClassificationHostedCbsDto host, @PathVariable String hostedid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
+    {
+        return assetService.updateHostedcbs(host,hostedid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
+    }
 	
 	//11-pathfinder_asset_total
 	

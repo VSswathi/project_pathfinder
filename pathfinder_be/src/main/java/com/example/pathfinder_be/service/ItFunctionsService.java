@@ -2,6 +2,7 @@ package com.example.pathfinder_be.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,29 @@ public class ItFunctionsService {
 	public Optional<ItFunctionsDto> getByItFunctionsId(String itfunctionid) {
 	
 		return functionRepo.findById(itfunctionid);
+	}
+
+
+	public ItFunctionsDto updateItFunctions(ItFunctionsDto funct, String itfunctionid, String inputtableid,
+			String itpersonelid) {
+		ItFunctionsDto old2=functionRepo.findById(itfunctionid).get();
+		InputTablesDto inp=inputRepo.findById(inputtableid).get();
+		ItPersonnelDto itp=itpersonalRepo.findById(itpersonelid).get();
+		old2.setId(funct.getId());
+		old2.setData_center_itspend_run_perc(funct.getData_center_itspend_run_perc());
+		old2.setEnd_user_computing_itspend_run_perc(funct.getEnd_user_computing_itspend_run_perc());
+		old2.setIt_service_desk_itspend_run_perc(funct.getIt_service_desk_itspend_run_perc());
+		old2.setNetwork_itspend_run_perc(funct.getNetwork_itspend_run_perc());
+		old2.setApplication_enhance_itspend_run_perc(funct.getApplication_enhance_itspend_run_perc());
+		old2.setApplication_support_itspend_run_perc(funct.getApplication_support_itspend_run_perc());
+		old2.setIt_management_itspend_run_perc(funct.getIt_management_itspend_run_perc());
+		old2.setData_center_fte_spread_perc(funct.getData_center_fte_spread_perc());
+		old2.setEnd_user_computing_fte_spread_perc(funct.getEnd_user_computing_fte_spread_perc());
+		old2.setIt_service_desk_fte_spread_perc(funct.getIt_service_desk_fte_spread_perc());
+		old2.setNetwork_fte_spread_perc(funct.getNetwork_fte_spread_perc());
+		old2.setApplication_enhance_fte_spread_perc(funct.getApplication_enhance_fte_spread_perc());
+		old2.setApplication_support_fte_spread_perc(funct.getApplication_support_fte_spread_perc());
+		old2.setIt_management_fte_spread_perc(funct.getIt_management_fte_spread_perc());
+		return functionRepo.save(old2);
 	}
 }

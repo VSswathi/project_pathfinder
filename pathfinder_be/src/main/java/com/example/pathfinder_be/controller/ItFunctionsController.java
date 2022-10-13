@@ -3,6 +3,7 @@ package com.example.pathfinder_be.controller;
 import java.util.Optional;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,4 +37,10 @@ public class ItFunctionsController {
 	    Optional<ItFunctionsDto> inp2 = functionservice.getByItFunctionsId(itfunctionid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
+	
+	@PutMapping("/updateitfunction/{itfunctionid}/{inputtableid}/{itpersonelid}")
+    public ItFunctionsDto updateItFunctions(@RequestBody ItFunctionsDto funct, @PathVariable String itfunctionid, @PathVariable String inputtableid,@PathVariable String itpersonelid)
+    {
+        return functionservice.updateItFunctions(funct,itfunctionid,inputtableid,itpersonelid);
+    }
 }

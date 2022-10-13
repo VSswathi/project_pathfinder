@@ -3,6 +3,7 @@ package com.example.pathfinder_be.service;
 import java.util.Optional;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,9 @@ import com.example.pathfinder_be.repo.ItSpendCategoriesRepo;
 import com.example.pathfinder_be.repo.ItSpendOnRunPersonnelRepo;
 import com.example.pathfinder_be.repo.ItpersonelRepo;
 import com.example.pathfinder_be.repo.SavingsOptimizationRepo;
+
+
+
 
 @Service
 public class AssetClassificationService {
@@ -88,6 +92,18 @@ public class AssetClassificationService {
 		return hardRepo.findById(hardwareid);
 	}
 	
+
+	public AssetClassificationHardwareDto updateHardware(AssetClassificationHardwareDto h, String hardwareid,
+			String itrunspendid1, String inputtablesid2, String itspendcategoriesid3) {
+		AssetClassificationHardwareDto old2=hardRepo.findById(hardwareid).get();
+		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
+		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
+		old2.setId(h.getId());		
+		old2.setHardwareCalculations(help.hardwareCalculation(h, run, inp, isc).getHardwareCalculations());
+		return hardRepo.save(old2);
+	}
+
 	
 	//8-pathfinder_asset_classification_software
 	public AssetClassificationSoftwareDto software_calculation(AssetClassificationSoftwareDto s,
@@ -106,6 +122,17 @@ public class AssetClassificationService {
 	public Optional<AssetClassificationSoftwareDto> getBySoftwareId(String softwareid) {
 	
 		return softRepo.findById(softwareid);
+	}
+	
+	public AssetClassificationSoftwareDto updateSoftware(AssetClassificationSoftwareDto s, String softwareid,
+			String itrunspendid1, String inputtablesid2, String itspendcategoriesid3) {
+		AssetClassificationSoftwareDto old2=softRepo.findById(softwareid).get();
+		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
+		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
+		old2.setId(s.getId());		
+		old2.setSoftwareCalculations(help.softwareCalculation(s, run, inp, isc).getSoftwareCalculations());
+		return softRepo.save(old2);
 	}
 
 	//9-pathfinder_asset_classification_managed
@@ -126,6 +153,17 @@ public class AssetClassificationService {
 	
 		return managedRepo.findById(managedid);
 	}
+	
+	public AssetClassificationManagedServicesDto updateManagedServices(AssetClassificationManagedServicesDto m,
+			String managedid, String itrunspendid1, String inputtablesid2, String itspendcategoriesid3) {
+		AssetClassificationManagedServicesDto old2=managedRepo.findById(managedid).get();
+		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
+		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
+		old2.setId(m.getId());		
+		old2.setManaged_servicesCalculations(help.managedCalculation(m, run, inp, isc).getManaged_servicesCalculations());
+		return managedRepo.save(old2);
+	}
 
 //10-pathfinder_asset_classification_hosted
 
@@ -143,8 +181,18 @@ public class AssetClassificationService {
 	}
 	
 	public Optional<AssetClassificationHostedCbsDto> getByHostedId(String hostedid) {
-		// TODO Auto-generated method stub
 		return hostedRepo.findById(hostedid);
+	}
+	
+	public AssetClassificationHostedCbsDto updateHostedcbs(AssetClassificationHostedCbsDto host, String hostedid,
+			String itrunspendid1, String inputtablesid2, String itspendcategoriesid3) {
+		AssetClassificationHostedCbsDto old2=hostedRepo.findById(hostedid).get();
+		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
+		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
+		old2.setId(host.getId());		
+		old2.setHosted_cbsCalculations(help.hostedCalculation(host, run, inp, isc).getHosted_cbsCalculations());
+		return hostedRepo.save(old2);
 	}
 	
 	//11-pathfinder_asset_total
@@ -188,6 +236,12 @@ public class AssetClassificationService {
 	        
 	        return obj3;   
 	}
+
+	
+
+
+
+
 
 	
 

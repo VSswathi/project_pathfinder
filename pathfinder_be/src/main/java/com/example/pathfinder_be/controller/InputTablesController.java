@@ -135,7 +135,11 @@ public class InputTablesController {
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
     
-    
+   @PutMapping("/updatecost/{costid}/{inputtablesid}")
+   public CostofTransformationDto updateCost(@RequestBody CostofTransformationDto cot, @PathVariable String costid,@PathVariable String inputtablesid)
+   {
+       return inpService.updateCost( cot, costid,inputtablesid);
+   }
 
     
 // 5-pathfinder_it_spend_categories
@@ -158,6 +162,13 @@ public class InputTablesController {
      List<ItSpendCategoriesDto> inp2 = spendService.getAllItSpendCatId(); 
   		return new ResponseEntity<List<ItSpendCategoriesDto>>(inp2, HttpStatus.OK);
   	}
+    
+    @PutMapping("/updateitspendcat/{itspendcatid}")
+    public ItSpendCategoriesDto updateItSpendCat(@RequestBody ItSpendCategoriesDto isc, @PathVariable String itspendcatid)
+    {
+        return spendService.updateItSpendCat( isc,itspendcatid);
+    }
+
     
     //6-pathfinder_itrun_spend
     @GetMapping("/itrun/{itpersonnelid1}/{inputtablesid2}/{costtransformationid3}")

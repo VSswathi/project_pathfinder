@@ -3,6 +3,7 @@ package com.example.pathfinder_be.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,6 @@ import com.example.pathfinder_be.dto.InputTablesDto;
 import com.example.pathfinder_be.dto.ItPersonalCostDto;
 import com.example.pathfinder_be.dto.ItPersonnelDto;
 import com.example.pathfinder_be.dto.ItRunSpendDto;
-import com.example.pathfinder_be.dto.YearBasedOutsourcingDto;
 import com.example.pathfinder_be.helper.AssetClassificationCalc;
 import com.example.pathfinder_be.helper.CalculationHelper;
 import com.example.pathfinder_be.repo.CostofTransformationRepo;
@@ -108,24 +108,13 @@ public class InputTablesService {
 	public ItPersonalCostDto updateItPersonnelCost(ItPersonalCostDto ipc, String itpersonelcostid,String itpersonnelid) {
 		ItPersonalCostDto old2=costRepo.findById(itpersonelcostid).get();
 		ItPersonnelDto itpc_final=itpersonalRepo.findById(itpersonnelid).get();
-		
-		//old2=helper.yearBasedCalculation(null, old2);
 		old2.setId(ipc.getId());
 		
 		old2.setOffshoreRatio(ipc.getOffshoreRatio());
 		old2.setOnsitRatio(ipc.getOnsitRatio());
 		old2.setPartnerCtcOnsite(ipc.getPartnerCtcOnsite());
-		old2.setPartnerCtcOffshore(ipc.getPartnerCtcOffshore());
-//		
- 	old2.setYearBseCalculations(helper.yearBasedCalculation(itpc_final, ipc).getYearBseCalculations());
-//		int i=0;
-//		for(YearBasedOutsourcingDto call: old2.getYearBseCalculations()) {
-//			call.setYearLine(ipc.getYearBseCalculations().get(i).getYearLine());
-//			call.setTakeOverPlan(ipc.getYearBseCalculations().get(i).getTakeOverPlan());
-//			
-//			
-//			i++;
-//		}
+		old2.setPartnerCtcOffshore(ipc.getPartnerCtcOffshore());		
+		old2.setYearBseCalculations(helper.yearBasedCalculation(itpc_final, ipc).getYearBseCalculations());
 		return costRepo.save(old2);
 	}
 
@@ -141,11 +130,20 @@ public class InputTablesService {
 	}
 	
 	public Optional<CostofTransformationDto> getByCostId(String costid) {
-		// TODO Auto-generated method stub
 		return cotRepo.findById(costid);
 	}
 
-
+	public CostofTransformationDto updateCost(CostofTransformationDto cot, String costid, String inputtablesid) {
+		CostofTransformationDto old3=cotRepo.findById(costid).get();
+		InputTablesDto input_final=inputRepo.findById(inputtablesid).get();
+		old3.setId(cot.getId());
+		
+		old3.setCot_perc(cot.getCot_perc());
+		old3.setClient_perc(cot.getClient_perc());
+		old3.setPartner_perc(cot.getPartner_perc());
+		old3.setYearBaseCostCalculations(helper.YearBasedTransformation(cot, input_final).getYearBaseCostCalculations());
+		return cotRepo.save(old3);
+	}
 
 	   //6-pathfinder_itrun_spend
 	
@@ -162,18 +160,6 @@ public ItRunSpendDto itRunSpend_calc(String id1, String id2, String id3) {
 
 
    }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
