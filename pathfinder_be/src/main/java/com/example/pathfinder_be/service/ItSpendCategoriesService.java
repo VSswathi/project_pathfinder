@@ -39,7 +39,6 @@ ItSpendCategoriesRepo spendRepo;
 
 	public ItSpendCategoriesDto updateItSpendCat(ItSpendCategoriesDto isc, String itspendcatid) {
 		ItSpendCategoriesDto old=spendRepo.findById(itspendcatid).get();
-		old.setId(isc.getId());
 		old.setYear(isc.getYear());
 		old.setHardware(isc.getHardware());
 		old.setSoftware(isc.getSoftware());

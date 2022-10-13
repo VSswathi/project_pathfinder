@@ -98,8 +98,7 @@ public class AssetClassificationService {
 		AssetClassificationHardwareDto old2=hardRepo.findById(hardwareid).get();
 		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
 		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
-		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
-		old2.setId(h.getId());		
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();	
 		old2.setHardwareCalculations(help.hardwareCalculation(h, run, inp, isc).getHardwareCalculations());
 		return hardRepo.save(old2);
 	}
@@ -129,8 +128,7 @@ public class AssetClassificationService {
 		AssetClassificationSoftwareDto old2=softRepo.findById(softwareid).get();
 		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
 		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
-		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
-		old2.setId(s.getId());		
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();	
 		old2.setSoftwareCalculations(help.softwareCalculation(s, run, inp, isc).getSoftwareCalculations());
 		return softRepo.save(old2);
 	}
@@ -159,8 +157,7 @@ public class AssetClassificationService {
 		AssetClassificationManagedServicesDto old2=managedRepo.findById(managedid).get();
 		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
 		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
-		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
-		old2.setId(m.getId());		
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();		
 		old2.setManaged_servicesCalculations(help.managedCalculation(m, run, inp, isc).getManaged_servicesCalculations());
 		return managedRepo.save(old2);
 	}
@@ -189,8 +186,7 @@ public class AssetClassificationService {
 		AssetClassificationHostedCbsDto old2=hostedRepo.findById(hostedid).get();
 		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
 		InputTablesDto inp=inputRepo.findById(inputtablesid2).get();
-		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();
-		old2.setId(host.getId());		
+		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();		
 		old2.setHosted_cbsCalculations(help.hostedCalculation(host, run, inp, isc).getHosted_cbsCalculations());
 		return hostedRepo.save(old2);
 	}

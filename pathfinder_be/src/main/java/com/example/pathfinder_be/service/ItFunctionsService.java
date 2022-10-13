@@ -47,7 +47,6 @@ public class ItFunctionsService {
 		ItFunctionsDto old2=functionRepo.findById(itfunctionid).get();
 		InputTablesDto inp=inputRepo.findById(inputtableid).get();
 		ItPersonnelDto itp=itpersonalRepo.findById(itpersonelid).get();
-		old2.setId(funct.getId());
 		old2.setData_center_itspend_run_perc(funct.getData_center_itspend_run_perc());
 		old2.setEnd_user_computing_itspend_run_perc(funct.getEnd_user_computing_itspend_run_perc());
 		old2.setIt_service_desk_itspend_run_perc(funct.getIt_service_desk_itspend_run_perc());

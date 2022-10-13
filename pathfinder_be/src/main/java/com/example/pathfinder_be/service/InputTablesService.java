@@ -57,7 +57,6 @@ public class InputTablesService {
 	public InputTablesDto updateInputTables(InputTablesDto inp, String inputtablesid) {
 		
         InputTablesDto old=inputRepo.findById(inputtablesid).get();
-		old.setId(inp.getId());
 		old.setAnnual_inflation_perc(inp.getAnnual_inflation_perc());
 		old.setAnnual_revenue_for_client(inp.getAnnual_revenue_for_client());
 		old.setIt_spent_perc(inp.getIt_spent_perc());
@@ -85,7 +84,6 @@ public class InputTablesService {
 	
 	public ItPersonnelDto updateItPersonnel(ItPersonnelDto itp, String itpersonelid) {
 		ItPersonnelDto old1=itpersonalRepo.findById(itpersonelid).get();
-		old1.setId(itp.getId());
 		old1.setIt_spend_on_personal_perc(itp.getIt_spend_on_personal_perc());
 		old1.setAvr_ctc_per_fte(itp.getAvr_ctc_per_fte());
 		old1.setPerc_eligible_forpersonal(itp.getPerc_eligible_forpersonal());
@@ -108,8 +106,6 @@ public class InputTablesService {
 	public ItPersonalCostDto updateItPersonnelCost(ItPersonalCostDto ipc, String itpersonelcostid,String itpersonnelid) {
 		ItPersonalCostDto old2=costRepo.findById(itpersonelcostid).get();
 		ItPersonnelDto itpc_final=itpersonalRepo.findById(itpersonnelid).get();
-		old2.setId(ipc.getId());
-		
 		old2.setOffshoreRatio(ipc.getOffshoreRatio());
 		old2.setOnsitRatio(ipc.getOnsitRatio());
 		old2.setPartnerCtcOnsite(ipc.getPartnerCtcOnsite());
@@ -136,8 +132,6 @@ public class InputTablesService {
 	public CostofTransformationDto updateCost(CostofTransformationDto cot, String costid, String inputtablesid) {
 		CostofTransformationDto old3=cotRepo.findById(costid).get();
 		InputTablesDto input_final=inputRepo.findById(inputtablesid).get();
-		old3.setId(cot.getId());
-		
 		old3.setCot_perc(cot.getCot_perc());
 		old3.setClient_perc(cot.getClient_perc());
 		old3.setPartner_perc(cot.getPartner_perc());
