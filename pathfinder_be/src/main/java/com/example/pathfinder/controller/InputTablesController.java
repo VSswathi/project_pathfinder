@@ -4,6 +4,7 @@ package com.example.pathfinder.controller;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,7 @@ import com.example.pathfinder.dto.ItPersonalCostDto;
 import com.example.pathfinder.dto.ItPersonnelDto;
 import com.example.pathfinder.dto.ItRunSpendDto;
 import com.example.pathfinder.dto.ItSpendCategoriesDto;
-import com.example.pathfinder.helper.CalculationHelper;
 import com.example.pathfinder.repo.CostofTransformationRepo;
-import com.example.pathfinder.repo.InputTablesRepo;
-import com.example.pathfinder.repo.ItpersonelRepo;
 import com.example.pathfinder.service.InputTablesService;
 import com.example.pathfinder.service.ItSpendCategoriesService;
 
@@ -39,20 +37,11 @@ import com.example.pathfinder.service.ItSpendCategoriesService;
 public class InputTablesController {
 
 
-	@Autowired
-	InputTablesRepo inputRepo;
-
    @Autowired
    InputTablesService inpService;
    
    @Autowired
-   ItpersonelRepo itpersonalRepo;
-   
-   @Autowired
    ItSpendCategoriesService spendService;
-   
-   @Autowired
-   CalculationHelper helper;
    
    @Autowired
    CostofTransformationRepo cotRepo;
@@ -61,26 +50,26 @@ public class InputTablesController {
    
 //1-pathfinder_input_tables
    
-   @PostMapping("/input")
+   @PostMapping("/inputvalues")
    public ResponseEntity<?> inputTablesFinal(@RequestBody InputTablesDto inp) {
    	InputTablesDto input = inpService.input_tables_final(inp);
        return ResponseEntity.ok(input);
        
    }
    
-   @GetMapping("/getinputtables/{inputtablesid}")    
+   @GetMapping("/inputtables/{inputtablesid}")    
    public ResponseEntity<InputTablesDto> getByInputTablesId(@PathVariable String inputtablesid) {   
     Optional<InputTablesDto> inp2 = inpService.getByInputTablesId(inputtablesid); 
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
    
-//   @GetMapping("/getallinputtables")    
-//   public ResponseEntity<List<InputTablesDto>> getAllInputTables() {   
-//    List<InputTablesDto> inp2 = inpService.getAllInputTables(); 
-// 		return new ResponseEntity<List<InputTablesDto>>(inp2, HttpStatus.OK);
-// 	}
+   @GetMapping("/inputtables")    
+   public ResponseEntity<List<InputTablesDto>> getAllInputTables() {   
+    List<InputTablesDto> inp2 = inpService.getAllInputTables(); 
+ 		return new ResponseEntity<List<InputTablesDto>>(inp2, HttpStatus.OK);
+ 	}
    
-   @PutMapping("/updateinputtables/{inputtablesid}")
+   @PutMapping("/inputtables/{inputtablesid}")
    public InputTablesDto updateInputTables(@RequestBody InputTablesDto inp, @PathVariable String inputtablesid)
    {
        return inpService.updateInputTables( inp, inputtablesid);
@@ -94,23 +83,23 @@ public class InputTablesController {
        return ResponseEntity.ok(input);
    }
    
-   @GetMapping("/getitpersonel/{itpersonelid}")    
+   @GetMapping("/itpersonel/{itpersonelid}")    
    public ResponseEntity<ItPersonnelDto> getByitPersonalId(@PathVariable String itpersonelid) {   
     Optional<ItPersonnelDto> inp2 = inpService.getByitPersonalId(itpersonelid); 
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
    
-//   @GetMapping("/getallitpersonel")    
-//   public ResponseEntity<List<ItPersonnelDto>> getAllItPersonnel() {   
-//    List<ItPersonnelDto> inp2 = inpService.getAllItPersonnel(); 
-// 		return new ResponseEntity<List<ItPersonnelDto>>(inp2, HttpStatus.OK);
-// 	}
+   @GetMapping("/itpersonel")    
+   public ResponseEntity<List<ItPersonnelDto>> getAllItPersonnel() {   
+    List<ItPersonnelDto> inp2 = inpService.getAllItPersonnel(); 
+ 		return new ResponseEntity<List<ItPersonnelDto>>(inp2, HttpStatus.OK);
+ 	}
    
-//   @PutMapping("/updateitpersonel/{itpersonelid}")
-//   public ItPersonnelDto updateItPersonnel(@RequestBody ItPersonnelDto itp, @PathVariable String itpersonelid)
-//   {
-//       return inpService.updateItPersonnel( itp, itpersonelid);
-//   }
+   @PutMapping("/itpersonel/{itpersonelid}/{inputtablesid}")
+   public ItPersonnelDto updateItPersonnel(@RequestBody ItPersonnelDto itp, @PathVariable String itpersonelid,@PathVariable String inputtablesid)
+   {
+       return inpService.updateItPersonnel( itp, itpersonelid,inputtablesid);
+   }
 
    
 // 3-pathfinder_it_personnel_cost 
@@ -121,19 +110,19 @@ public class InputTablesController {
        return ResponseEntity.ok(input);
    }
    
-   @GetMapping("/getitpersonelcost/{itpersonelcostid}")    
+   @GetMapping("/itpersonelcost/{itpersonelcostid}")    
    public ResponseEntity<ItPersonalCostDto> getByitPersonalCostId(@PathVariable String itpersonelcostid) {   
     Optional<ItPersonalCostDto> inp2 = inpService.getByitPersonalCostId(itpersonelcostid); 
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
    
-//   @GetMapping("/getallitpersonelcost")    
-//   public ResponseEntity<List<ItPersonalCostDto>> getAllItPersonnelCost() {   
-//    List<ItPersonalCostDto> inp2 = inpService.getAllItPersonnelCost(); 
-// 		return new ResponseEntity<List<ItPersonalCostDto>>(inp2, HttpStatus.OK);
-// 	}
-//   
-   @PutMapping("/updateitpersonelcost/{itpersonelcostid}/{itpersonnelid}")
+   @GetMapping("/itpersonelcost")    
+   public ResponseEntity<List<ItPersonalCostDto>> getAllItPersonnelCost() {   
+    List<ItPersonalCostDto> inp2 = inpService.getAllItPersonnelCost(); 
+ 		return new ResponseEntity<List<ItPersonalCostDto>>(inp2, HttpStatus.OK);
+ 	}
+   
+   @PutMapping("/itpersonelcost/{itpersonelcostid}/{itpersonnelid}")
    public ItPersonalCostDto updateItPersonnelCost(@RequestBody ItPersonalCostDto ipc, @PathVariable String itpersonelcostid,@PathVariable String itpersonnelid)
    {
        return inpService.updateItPersonnelCost( ipc, itpersonelcostid,itpersonnelid);
@@ -148,18 +137,18 @@ public class InputTablesController {
        
    }
    
-   @GetMapping("/getcost/{costid}")    
+   @GetMapping("/cost/{costid}")    
    public ResponseEntity<CostofTransformationDto> getByCostId(@PathVariable String costid) {   
     Optional<CostofTransformationDto> inp2 = inpService.getByCostId(costid); 
  		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
  	}
     
-//   @GetMapping("/getallcost")    
-//   public ResponseEntity<List<CostofTransformationDto>> getAllCostTrans() {   
-//    List<CostofTransformationDto> inp2 = inpService.getAllCostTrans(); 
-// 		return new ResponseEntity<List<CostofTransformationDto>>(inp2, HttpStatus.OK);
-// 	}
-   @PutMapping("/updatecost/{costid}/{inputtablesid}")
+   @GetMapping("/cost")    
+   public ResponseEntity<List<CostofTransformationDto>> getAllCostTrans() {   
+    List<CostofTransformationDto> inp2 = inpService.getAllCostTrans(); 
+ 		return new ResponseEntity<List<CostofTransformationDto>>(inp2, HttpStatus.OK);
+ 	}
+   @PutMapping("/cost/{costid}/{inputtablesid}")
    public CostofTransformationDto updateCost(@RequestBody CostofTransformationDto cot, @PathVariable String costid,@PathVariable String inputtablesid)
    {
        return inpService.updateCost( cot, costid,inputtablesid);
@@ -175,19 +164,19 @@ public class InputTablesController {
         
     }
     
-    @GetMapping("/getitspendcat/{itspendcatid}")    
+    @GetMapping("/itspendcat/{itspendcatid}")    
     public ResponseEntity<ItSpendCategoriesDto> getByItSpendCatId(@PathVariable String itspendcatid) {   
      Optional<ItSpendCategoriesDto> inp2 = spendService.getByItSpendCatId(itspendcatid); 
   		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
   	}
     
-    @GetMapping("/getallitspendcat")    
+    @GetMapping("/itspendcat")    
     public ResponseEntity<List<ItSpendCategoriesDto>> getAllItSpendCatId() {   
      List<ItSpendCategoriesDto> inp2 = spendService.getAllItSpendCatId(); 
   		return new ResponseEntity<List<ItSpendCategoriesDto>>(inp2, HttpStatus.OK);
   	}
     
-    @PutMapping("/updateitspendcat/{itspendcatid}")
+    @PutMapping("/itspendcat/{itspendcatid}")
     public ItSpendCategoriesDto updateItSpendCat(@RequestBody ItSpendCategoriesDto isc, @PathVariable String itspendcatid)
     {
         return spendService.updateItSpendCat( isc,itspendcatid);

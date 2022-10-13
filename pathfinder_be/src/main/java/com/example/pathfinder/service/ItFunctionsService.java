@@ -1,5 +1,6 @@
 package com.example.pathfinder.service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -61,6 +62,11 @@ public class ItFunctionsService {
 		old2.setApplication_enhance_fte_spread_perc(funct.getApplication_enhance_fte_spread_perc());
 		old2.setApplication_support_fte_spread_perc(funct.getApplication_support_fte_spread_perc());
 		old2.setIt_management_fte_spread_perc(funct.getIt_management_fte_spread_perc());
-		return functionRepo.save(old2);
+		ItFunctionsDto  obj2=helpcalc.calculateValue(old2,inp,itp);
+		return functionRepo.save(obj2);
+	}
+	
+	public List<ItFunctionsDto> getAllItFunctions() {
+		return functionRepo.findAll();
 	}
 }

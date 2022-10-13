@@ -46,7 +46,5 @@ ItSpendCategoriesRepo spendRepo;
 		old.setHosted_cbs(isc.getHosted_cbs());
 		return spendRepo.save(old);
 	}
-
-	
 	
 }

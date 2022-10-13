@@ -1,6 +1,7 @@
 package com.example.pathfinder.service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -72,6 +73,9 @@ public class InputTablesService {
 		return inputRepo.findById(inputtablesid);
 	}
 	
+	public List<InputTablesDto> getAllInputTables() {
+		return inputRepo.findAll();
+	}
 	
 	// 2-pathfinder_it_personnel
 	public ItPersonnelDto it_personal_final(ItPersonnelDto itp, String id) {
@@ -84,14 +88,20 @@ public class InputTablesService {
 		return itpersonalRepo.findById(itpersonelid);
 	}
 	
-//	public ItPersonnelDto updateItPersonnel(ItPersonnelDto itp, String itpersonelid) {
-//		ItPersonnelDto old1=itpersonalRepo.findById(itpersonelid).get();
-//		old1.setIt_spend_on_personal_perc(itp.getIt_spend_on_personal_perc());
-//		old1.setAvr_ctc_per_fte(itp.getAvr_ctc_per_fte());
-//		old1.setPerc_eligible_forpersonal(itp.getPerc_eligible_forpersonal());
-////		ItPersonnelDto object=helper.calcValue(itp,itpersonelid);
-//		return itpersonalRepo.save(object);
-//	}
+	public ItPersonnelDto updateItPersonnel(ItPersonnelDto itp, String itpersonelid, String inputtablesid) {
+		ItPersonnelDto old1=itpersonalRepo.findById(itpersonelid).get();
+		InputTablesDto inp=inputRepo.findById(inputtablesid).get();
+		
+		old1.setIt_spend_on_personal_perc(itp.getIt_spend_on_personal_perc());
+		old1.setAvr_ctc_per_fte(itp.getAvr_ctc_per_fte());
+		old1.setPerc_eligible_forpersonal(itp.getPerc_eligible_forpersonal());
+		ItPersonnelDto object=helper.calcValue(itp,inp);
+		return itpersonalRepo.save(object);
+	}
+	
+	public List<ItPersonnelDto> getAllItPersonnel() {
+		return itpersonalRepo.findAll();
+	}
 
 	// 3-pathfinder_it_personnel_cost 	
 	public ItPersonalCostDto it_personal_cost_final(ItPersonalCostDto icp, String id) {
@@ -117,7 +127,9 @@ public class InputTablesService {
 		return costRepo.save(old2);
 	}
 
-	
+	public List<ItPersonalCostDto> getAllItPersonnelCost() {
+		return costRepo.findAll();
+	}
 
 	// 4-pathfinder_cost_of_transformation
 	public CostofTransformationDto costTransformation_calc(CostofTransformationDto inp, String id) {
@@ -140,6 +152,10 @@ public class InputTablesService {
 		old3.setPartner_perc(cot.getPartner_perc());
 		old3.setYearBaseCostCalculations(helper.YearBasedTransformation(cot, input_final).getYearBaseCostCalculations());
 		return cotRepo.save(old3);
+	}
+	
+	public List<CostofTransformationDto> getAllCostTrans() {
+		return cotRepo.findAll();
 	}
 
 	   //6-pathfinder_itrun_spend

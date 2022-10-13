@@ -1,5 +1,6 @@
 package com.example.pathfinder.service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -103,6 +104,9 @@ public class AssetClassificationService {
 		return hardRepo.save(old2);
 	}
 
+	public List<AssetClassificationHardwareDto> getAllHardware() {
+		return hardRepo.findAll();
+	}
 	
 	//8-pathfinder_asset_classification_software
 	public AssetClassificationSoftwareDto software_calculation(AssetClassificationSoftwareDto s,
@@ -131,6 +135,10 @@ public class AssetClassificationService {
 		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();	
 		old2.setSoftwareCalculations(help.softwareCalculation(s, run, inp, isc).getSoftwareCalculations());
 		return softRepo.save(old2);
+	}
+	
+	public List<AssetClassificationSoftwareDto> getAllSoftware() {
+		return softRepo.findAll();
 	}
 
 	//9-pathfinder_asset_classification_managed
@@ -161,6 +169,10 @@ public class AssetClassificationService {
 		old2.setManaged_servicesCalculations(help.managedCalculation(m, run, inp, isc).getManaged_servicesCalculations());
 		return managedRepo.save(old2);
 	}
+	
+	public List<AssetClassificationManagedServicesDto> getAllManaged() {
+		return managedRepo.findAll();
+	}
 
 //10-pathfinder_asset_classification_hosted
 
@@ -189,6 +201,10 @@ public class AssetClassificationService {
 		ItSpendCategoriesDto isc=spendRepo.findById(itspendcategoriesid3).get();		
 		old2.setHosted_cbsCalculations(help.hostedCalculation(host, run, inp, isc).getHosted_cbsCalculations());
 		return hostedRepo.save(old2);
+	}
+	
+	public List<AssetClassificationHostedCbsDto> getAllHosted() {
+		return hostedRepo.findAll();
 	}
 	
 	//11-pathfinder_asset_total

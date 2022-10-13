@@ -1,5 +1,6 @@
 package com.example.pathfinder.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,13 +53,19 @@ public class AssetClassificationController {
         
     }
 	
-	@GetMapping("/gethardware/{hardwareid}")    
+	@GetMapping("/hardware/{hardwareid}")    
 	   public ResponseEntity<AssetClassificationHardwareDto> getByHardwareId(@PathVariable String hardwareid) {   
 	    Optional<AssetClassificationHardwareDto> inp2 = assetService.getByHardwareId(hardwareid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
 	
-	@PutMapping("/updatehardware/{hardwareid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+	@GetMapping("/hardware")    
+	   public ResponseEntity<List<AssetClassificationHardwareDto>> getAllHardware() {   
+	    List<AssetClassificationHardwareDto> inp2 = assetService.getAllHardware(); 
+	 		return new ResponseEntity<List<AssetClassificationHardwareDto>>(inp2, HttpStatus.OK);
+	 }
+	
+	@PutMapping("/hardware/{hardwareid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public AssetClassificationHardwareDto updateHardware(@RequestBody AssetClassificationHardwareDto h, @PathVariable String hardwareid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
     {
         return assetService.updateHardware(h,hardwareid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
@@ -74,12 +81,19 @@ public class AssetClassificationController {
         
     }
 	
-	@GetMapping("/getsoftware/{softwareid}")    
+	@GetMapping("/software/{softwareid}")    
 	   public ResponseEntity<AssetClassificationSoftwareDto> getBySoftwareId(@PathVariable String softwareid) {   
 	    Optional<AssetClassificationSoftwareDto> inp2 = assetService.getBySoftwareId(softwareid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
-	@PutMapping("/updatesoftware/{softwareid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+	
+	@GetMapping("/software")    
+	   public ResponseEntity<List<AssetClassificationSoftwareDto>> getAllSoftware() {   
+	    List<AssetClassificationSoftwareDto> inp2 = assetService.getAllSoftware(); 
+	 		return new ResponseEntity<List<AssetClassificationSoftwareDto>>(inp2, HttpStatus.OK);
+	 }
+	
+	@PutMapping("/software/{softwareid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public AssetClassificationSoftwareDto updateSoftware(@RequestBody AssetClassificationSoftwareDto s, @PathVariable String softwareid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
     {
         return assetService.updateSoftware(s,softwareid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
@@ -93,13 +107,19 @@ public class AssetClassificationController {
         
     }
 	
-	@GetMapping("/getmanagedservices/{managedid}")    
+	@GetMapping("/managedservices/{managedid}")    
 	   public ResponseEntity<AssetClassificationManagedServicesDto> getByManagedId(@PathVariable String managedid) {   
 	    Optional<AssetClassificationManagedServicesDto> inp2 = assetService.getByManagedId(managedid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
 	
-	@PutMapping("/updatemanagedservices/{managedid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+	@GetMapping("/managedservices")    
+	   public ResponseEntity<List<AssetClassificationManagedServicesDto>> getAllManaged() {   
+	    List<AssetClassificationManagedServicesDto> inp2 = assetService.getAllManaged(); 
+	 		return new ResponseEntity<List<AssetClassificationManagedServicesDto>>(inp2, HttpStatus.OK);
+	 }
+	
+	@PutMapping("/managedservices/{managedid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public AssetClassificationManagedServicesDto updateManagedServices(@RequestBody AssetClassificationManagedServicesDto m, @PathVariable String managedid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
     {
         return assetService.updateManagedServices(m,managedid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
@@ -113,13 +133,19 @@ public class AssetClassificationController {
         
     }
 	
-	@GetMapping("/gethostedcbs/{hostedid}")    
+	@GetMapping("/hostedcbs/{hostedid}")    
 	   public ResponseEntity<AssetClassificationHostedCbsDto> getByHostedId(@PathVariable String hostedid) {   
 	    Optional<AssetClassificationHostedCbsDto> inp2 = assetService.getByHostedId(hostedid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
 	
-	@PutMapping("/updatehostedcbs/{hostedid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+	@GetMapping("/hostedcbs")    
+	   public ResponseEntity<List<AssetClassificationHostedCbsDto>> getAllHosted() {   
+	    List<AssetClassificationHostedCbsDto> inp2 = assetService.getAllHosted(); 
+	 		return new ResponseEntity<List<AssetClassificationHostedCbsDto>>(inp2, HttpStatus.OK);
+	 }
+	
+	@PutMapping("/hostedcbs/{hostedid}/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public AssetClassificationHostedCbsDto updateHostedcbs(@RequestBody AssetClassificationHostedCbsDto host, @PathVariable String hostedid, @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3)
     {
         return assetService.updateHostedcbs(host,hostedid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
