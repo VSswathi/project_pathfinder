@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
 import com.example.pathfinder.dto.RunOpexModellingDto;
+import com.example.pathfinder.dto.TotalSavingsModel2ADto;
 import com.example.pathfinder.dto.TotalSavingsModel2BDto;
 import com.example.pathfinder.service.ModelOptionsService;
 
@@ -45,5 +46,13 @@ public class ModelOptionsController {
         return ResponseEntity.ok(input);
         
     }
+	
+	@GetMapping("/totalmodel2a/{itrunspendid1}/{savingoptid2}/{itspendrunpersid3}/{assetoutsourceid4}/{totalsavings2bid5}")
+    public ResponseEntity<?> model2a_calculation(@PathVariable String itrunspendid1,@PathVariable String savingoptid2,@PathVariable String itspendrunpersid3,@PathVariable String assetoutsourceid4,@PathVariable String totalsavings2bid5) {
+		TotalSavingsModel2ADto input = modelService.model2a_calculation(itrunspendid1, savingoptid2, itspendrunpersid3,assetoutsourceid4,totalsavings2bid5);
+        return ResponseEntity.ok(input);
+        
+    }
+	
 
 }
