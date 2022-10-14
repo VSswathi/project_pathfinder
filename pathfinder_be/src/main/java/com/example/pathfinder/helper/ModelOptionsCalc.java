@@ -8,6 +8,8 @@ import com.example.pathfinder.dto.ItRunSpendDto;
 import com.example.pathfinder.dto.ItSpendOnRunPersonnelDto;
 import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
 import com.example.pathfinder.dto.RunOpexModelingFitshoreYear;
+import com.example.pathfinder.dto.RunOpexModellingDto;
+import com.example.pathfinder.dto.RunOpexModellingYear;
 import com.example.pathfinder.dto.SavingsOptimizationDto;
 import com.example.pathfinder.dto.TotalOutsourcingFitshoreDto;
 import com.example.pathfinder.dto.TotalSavingsModel2BDto;
@@ -15,6 +17,8 @@ import com.example.pathfinder.dto.TotalSavingsModel2BYear;
 
 @Component
 public class ModelOptionsCalc {
+	
+	//20-pathfinder_total_savings_model2b
 	
 public TotalSavingsModel2BDto model2bcalculation(ItRunSpendDto run, SavingsOptimizationDto save,
 		ItSpendOnRunPersonnelDto spend,TotalOutsourcingFitshoreDto fit) {
@@ -198,4 +202,51 @@ public RunOpexModelingFitshoreDto runfit_calculation(TotalSavingsModel2BDto mode
 		return obj1;
 	}
 
+
+
+//22-pathfinder_run_opex_modelling
+
+public RunOpexModellingDto runopex_calculation(RunOpexModelingFitshoreDto fit) {
+	
+	RunOpexModellingDto obj1= new RunOpexModellingDto();
+	
+	obj1.setClient_drives_baseyear(fit.getClient_drives_baseyear()/1000000);
+	obj1.setWith_partner_hs_baseyear(fit.getWith_partner_hs_baseyear()/1000000);
+	obj1.setWith_partner_personnel_baseyear(fit.getWith_partner_personnel_baseyear()/1000000);
+	obj1.setTotal_partner_baseyear(fit.getTotal_partner_baseyear()/1000000);
+	
+	ArrayList<RunOpexModellingYear> runopexcalculation=new ArrayList<RunOpexModellingYear>();
+	
+
+	 for(int i=1;i<=3;i++) {
+
+		
+		 	RunOpexModellingYear  obj2 = new RunOpexModellingYear();
+            obj2.setYear(i);
+            obj2.setClient_drives(fit.getRunfitshorecalculation().get(i-1).getClient_drives()/1000000);
+            obj2.setWith_partner_hs(fit.getRunfitshorecalculation().get(i-1).getWith_partner_hs()/1000000);
+            obj2.setWith_partner_personnel(fit.getRunfitshorecalculation().get(i-1).getWith_partner_personnel()/1000000);
+            obj2.setTotal_partner(fit.getRunfitshorecalculation().get(i-1).getTotal_partner()/1000000);
+         
+            runopexcalculation.add(obj2);
+		
+	}
+	 
+	 obj1.setTotal_client_drives(fit.getTotal_client_drives()/1000000);
+	 obj1.setTotal_with_partner_hs(fit.getTotal_with_partner_hs()/1000000);
+	 obj1.setTotal_with_partner_personnel(fit.getTotal_with_partner_personnel()/1000000);
+	 obj1.setSum_total_partner(fit.getSum_total_partner()/1000000);
+	 obj1.setWith_partner_hs_cumulative(obj1.getTotal_client_drives()-obj1.getTotal_with_partner_hs());
+	 obj1.setWith_partner_personnel_cumulative(obj1.getTotal_client_drives()-obj1.getTotal_with_partner_personnel());
+	 obj1.setTotal_partner_cumulative(obj1.getTotal_client_drives()-obj1.getSum_total_partner());
+	 
+	 obj1.setWith_partner_hs_cumulative_perc((obj1.getWith_partner_hs_cumulative()*100)/obj1.getTotal_client_drives());
+	 obj1.setWith_partner_personnel_cumulative_perc((obj1.getWith_partner_personnel_cumulative()*100)/obj1.getTotal_client_drives());
+	 obj1.setTotal_partner_cumulative_perc((obj1.getTotal_partner_cumulative()*100)/obj1.getTotal_client_drives());
+	 
+	 	 
+	 obj1.setRunOpexCalc(runopexcalculation);
+	 
+	return obj1;
+}
 }
