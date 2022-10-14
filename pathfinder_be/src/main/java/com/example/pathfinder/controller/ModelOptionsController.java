@@ -5,11 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pathfinder.dto.SavingsOptimizationDto;
+import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
 import com.example.pathfinder.dto.TotalSavingsModel2BDto;
 import com.example.pathfinder.service.ModelOptionsService;
 
@@ -27,5 +26,14 @@ public class ModelOptionsController {
         return ResponseEntity.ok(input);
         
     }
+	
+	
+	@GetMapping("/runfitshore/{totalsavingsmodel2bid1}")
+    public ResponseEntity<?> runfit_calculation(@PathVariable String totalsavingsmodel2bid1) {
+		RunOpexModelingFitshoreDto input = modelService.runfit_calculation(totalsavingsmodel2bid1);
+        return ResponseEntity.ok(input);
+        
+    }
+	
 
 }

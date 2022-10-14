@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import com.example.pathfinder.dto.ItRunSpendDto;
 import com.example.pathfinder.dto.ItSpendOnRunPersonnelDto;
+import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
+import com.example.pathfinder.dto.RunOpexModelingFitshoreYear;
 import com.example.pathfinder.dto.SavingsOptimizationDto;
 import com.example.pathfinder.dto.TotalOutsourcingFitshoreDto;
 import com.example.pathfinder.dto.TotalSavingsModel2BDto;
@@ -128,6 +130,71 @@ public TotalSavingsModel2BDto model2bcalculation(ItRunSpendDto run, SavingsOptim
 		 obj1.setSum_totals_cost_reduction(final_tcr);
 		 
 		 obj1.setModel2bcalculation(model2bcalc);		
+		return obj1;
+	}
+
+
+
+
+//21-pathfinder_run_opex_fit_shore
+
+public RunOpexModelingFitshoreDto runfit_calculation(TotalSavingsModel2BDto model) {
+		
+		RunOpexModelingFitshoreDto obj1= new RunOpexModelingFitshoreDto();
+		
+		obj1.setClient_drives_baseyear(model.getTotals_baseyear());
+		obj1.setWith_partner_hs_baseyear(obj1.getClient_drives_baseyear());
+		obj1.setWith_partner_personnel_baseyear(obj1.getClient_drives_baseyear());
+		obj1.setTotal_partner_baseyear(obj1.getWith_partner_personnel_baseyear());
+		
+		long total_client_drives=0;
+		long total_with_phs=0;
+		long total_with_pp=0;
+			
+		long initial_client=0;
+		long final_client=0;
+		long initial_with_phs=0;
+		long final_with_phs=0;
+		long initial_with_pp=0;
+		long final_with_pp=0;
+		
+		ArrayList<RunOpexModelingFitshoreYear> runfitcalc=new ArrayList<RunOpexModelingFitshoreYear>();
+		
+
+		 for(int i=1;i<=3;i++) {
+
+			
+			 	RunOpexModelingFitshoreYear  obj2 = new RunOpexModelingFitshoreYear();
+	            obj2.setYear(i);
+	            obj2.setClient_drives(model.getModel2bcalculation().get(i-1).getTotals_client_spend_without_partner());
+	            obj2.setWith_partner_hs(model.getModel2bcalculation().get(i-1).getHardware_software_client_spend_with_partner()+model.getModel2bcalculation().get(i-1).getPersonnel_outsourcing_client_spend_without_partner());
+	            obj2.setWith_partner_personnel(model.getModel2bcalculation().get(i-1).getPersonnel_outsourcing_client_spend_with_partner()+model.getModel2bcalculation().get(i-1).getHardware_software_client_spend_without_partner());
+	            obj2.setTotal_partner(model.getModel2bcalculation().get(i-1).getTotals_client_spend_with_partner());
+	            
+	            total_client_drives=obj2.getClient_drives();
+	            final_client=(total_client_drives+initial_client);
+	            initial_client=final_client;
+	            total_with_phs=obj2.getWith_partner_hs();
+	            final_with_phs=(total_with_phs+initial_with_phs);
+	            initial_with_phs=final_with_phs;
+	            total_with_pp=obj2.getWith_partner_personnel();
+	            final_with_pp=(total_with_pp+initial_with_pp);
+	            initial_with_pp=final_with_pp;
+	            
+			    runfitcalc.add(obj2);
+			
+		}
+		 
+		 obj1.setTotal_client_drives(final_client);
+		 obj1.setTotal_with_partner_hs(final_with_phs);
+		 obj1.setTotal_with_partner_personnel(final_with_pp);
+		 obj1.setSum_total_partner(model.getSum_totals_client_spend_with_partner());
+		 obj1.setWith_partner_hs_cumulative(obj1.getTotal_client_drives()-obj1.getTotal_with_partner_hs());
+		 obj1.setWith_partner_personnel_cumulative(obj1.getTotal_client_drives()-obj1.getTotal_with_partner_personnel());
+		 obj1.setTotal_partner_cumulative(obj1.getTotal_client_drives()-obj1.getSum_total_partner());
+		 
+		 obj1.setRunfitshorecalculation(runfitcalc);
+		 
 		return obj1;
 	}
 
