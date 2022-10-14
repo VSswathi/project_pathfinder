@@ -13,6 +13,7 @@ import com.example.pathfinder.dto.ItPersonnelDto;
 import com.example.pathfinder.dto.ItRunSpendDto;
 import com.example.pathfinder.dto.ItSpendOnRunPersonnelDto;
 import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
+import com.example.pathfinder.dto.RunOpexModelingOutsourceDto;
 import com.example.pathfinder.dto.RunOpexModellingDto;
 import com.example.pathfinder.dto.SavingsOptimizationDto;
 import com.example.pathfinder.dto.TotalOutsourcingFitshoreDto;
@@ -23,6 +24,7 @@ import com.example.pathfinder.repo.AssetOutsourceOnsiteRepo;
 import com.example.pathfinder.repo.ItRunSpendRepo;
 import com.example.pathfinder.repo.ItSpendOnRunPersonnelRepo;
 import com.example.pathfinder.repo.RunOpexModelingFitshoreRepo;
+import com.example.pathfinder.repo.RunOpexModelingOutsourceRepo;
 import com.example.pathfinder.repo.RunOpexModellingRepo;
 import com.example.pathfinder.repo.SavingsOptimizationRepo;
 import com.example.pathfinder.repo.TotalOutsourcingFitshoreRepo;
@@ -52,6 +54,8 @@ public class ModelOptionsService {
 	AssetOutsourceOnsiteRepo assetRepo;
 	@Autowired
 	TotalSavingsModel2ARepo total2aRepo;
+	@Autowired
+	RunOpexModelingOutsourceRepo opexoutsourceRepo;
 
 	//20-pathfinder_total_savings_model2b
 	public TotalSavingsModel2BDto model2b_calculation(String itrunspendid1, String savingoptid2,
@@ -94,6 +98,15 @@ public class ModelOptionsService {
 		TotalSavingsModel2ADto obj2=modelHelp.model2a_calculation(run,save, spend,asset,model);
 		obj2= total2aRepo.save(obj2);
 		return obj2;
+	}
+
+	public RunOpexModelingOutsourceDto runoutsource_calculation(String totalsavingsmodel2aid1,
+			String totalsavingsmodel2bid2) {
+		TotalSavingsModel2ADto modela=total2aRepo.findById(totalsavingsmodel2aid1).get();	
+		TotalSavingsModel2BDto modelb=totalRepo.findById(totalsavingsmodel2bid2).get();		
+		RunOpexModelingOutsourceDto obj2=modelHelp.runoutsource_calculation(modela,modelb);
+		obj2= opexoutsourceRepo.save(obj2);
+		return obj2;        
 	}
 	
 
