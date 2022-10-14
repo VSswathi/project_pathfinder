@@ -223,6 +223,11 @@ public class AssetClassificationService {
 		
 		    
 	}
+	
+	public List<AssetClassificationDto> getAllItSpendAsset() {
+		// TODO Auto-generated method stub
+		return assetRepo.findAll();
+	}
 	//12-pathfinder_saving_optimization
 	public SavingsOptimizationDto saving_calculation(String hardwareid1, String softwareid2, String managedid3,
 			String hostedid4, String itpersonelid5, String costtransid6, String itrunspendid7) {
@@ -248,6 +253,8 @@ public class AssetClassificationService {
 	        
 	        return obj3;   
 	}
+
+
 
 	
 

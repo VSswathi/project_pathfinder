@@ -160,6 +160,12 @@ public class AssetClassificationController {
         
     }
 	
+	@GetMapping("/itspendasset")    
+	   public ResponseEntity<List<AssetClassificationDto>> getAllItSpendAsset() {   
+	    List<AssetClassificationDto> inp2 = assetService.getAllItSpendAsset(); 
+	 		return new ResponseEntity<List<AssetClassificationDto>>(inp2, HttpStatus.OK);
+	 }
+	
 	//12-pathfinder_saving_optimization
 	@GetMapping("/savinglevers/{hardwareid1}/{softwareid2}/{managedid3}/{hostedid4}/{itpersonelid5}/{costtransid6}/{itrunspendid7}")
     public ResponseEntity<?> saving_calc(@PathVariable String hardwareid1,@PathVariable String softwareid2,@PathVariable String managedid3,@PathVariable String hostedid4,@PathVariable String itpersonelid5,@PathVariable String costtransid6,@PathVariable String itrunspendid7) {
