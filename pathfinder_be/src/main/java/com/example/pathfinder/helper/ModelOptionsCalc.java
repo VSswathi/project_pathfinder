@@ -11,6 +11,8 @@ import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
 import com.example.pathfinder.dto.RunOpexModelingFitshoreYear;
 import com.example.pathfinder.dto.RunOpexModelingOutsourceDto;
 import com.example.pathfinder.dto.RunOpexModelingOutsourceYear;
+import com.example.pathfinder.dto.RunOpexModelling2ADto;
+import com.example.pathfinder.dto.RunOpexModelling2AYear;
 import com.example.pathfinder.dto.RunOpexModellingDto;
 import com.example.pathfinder.dto.RunOpexModellingYear;
 import com.example.pathfinder.dto.SavingsOptimizationDto;
@@ -89,7 +91,7 @@ public TotalSavingsModel2BDto model2bcalculation(ItRunSpendDto run, SavingsOptim
 	            obj2.setTotals_client_spend_with_partner(obj2.getPersonnel_outsourcing_client_spend_with_partner()+obj2.getHardware_software_client_spend_with_partner());
 	            obj2.setTotals_cost_reduction(obj2.getTotals_client_spend_without_partner()-obj2.getTotals_client_spend_with_partner());
 	            
-	            obj2.setCumulative_savings(obj2.getTotals_client_spend_with_partner()-total_baseline);
+	            obj2.setCumulative_savings(Math.abs(obj2.getTotals_client_spend_with_partner()-total_baseline));
 	            
 	            
 	            total_hardware_client_without_partner=obj2.getHardware_software_client_spend_without_partner();
@@ -320,7 +322,7 @@ public TotalSavingsModel2ADto model2a_calculation(ItRunSpendDto run, SavingsOpti
 	            obj2.setTotals_client_spend_with_partner(obj2.getPersonnel_outsourcing_client_spend_with_partner()+obj2.getHardware_software_client_spend_with_partner());
 	            obj2.setTotals_cost_reduction(obj2.getTotals_client_spend_without_partner()-obj2.getTotals_client_spend_with_partner());
 	            
-	            obj2.setCumulative_savings(obj2.getTotals_client_spend_with_partner()-model.getTotals_baseyear());
+	            obj2.setCumulative_savings(Math.abs(obj2.getTotals_client_spend_with_partner()-model.getTotals_baseyear()));
 	            
 	            
 	            total_hardware_client_without_partner=obj2.getHardware_software_client_spend_without_partner();
@@ -432,4 +434,49 @@ public RunOpexModelingOutsourceDto runoutsource_calculation(TotalSavingsModel2AD
 	 
 	return obj1;
 }
+
+public RunOpexModelling2ADto runopex2a_calculation(RunOpexModelingOutsourceDto out) {
+	
+	RunOpexModelling2ADto obj1= new RunOpexModelling2ADto();
+	
+	obj1.setClient_drives_baseyear(out.getClient_drives_baseyear()/1000000);
+	obj1.setWith_partner_hs_baseyear(out.getWith_partner_hs_baseyear()/1000000);
+	obj1.setWith_partner_personnel_baseyear(out.getWith_partner_personnel_baseyear()/1000000);
+	obj1.setTotal_partner_baseyear(out.getTotal_partner_baseyear()/1000000);
+	
+	ArrayList<RunOpexModelling2AYear> runopex2acalculation=new ArrayList<RunOpexModelling2AYear>();
+	
+
+	 for(int i=1;i<=3;i++) {
+
+		
+		 	RunOpexModelling2AYear  obj2 = new RunOpexModelling2AYear();
+            obj2.setYear(i);
+            obj2.setClient_drives(out.getRunoutsourcecalculation().get(i-1).getClient_drives()/1000000);
+            obj2.setWith_partner_hs(out.getRunoutsourcecalculation().get(i-1).getWith_partner_hs()/1000000);
+            obj2.setWith_partner_personnel(out.getRunoutsourcecalculation().get(i-1).getWith_partner_personnel()/1000000);
+            obj2.setTotal_partner(out.getRunoutsourcecalculation().get(i-1).getTotal_partner()/1000000);
+         
+            runopex2acalculation.add(obj2);
+		
+	}
+	 
+	 obj1.setTotal_client_drives(out.getTotal_client_drives()/1000000);
+	 obj1.setTotal_with_partner_hs(out.getTotal_with_partner_hs()/1000000);
+	 obj1.setTotal_with_partner_personnel(out.getTotal_with_partner_personnel()/1000000);
+	 obj1.setSum_total_partner(out.getSum_total_partner()/1000000);
+	 obj1.setWith_partner_hs_cumulative(obj1.getTotal_client_drives()-obj1.getTotal_with_partner_hs());
+	 obj1.setWith_partner_personnel_cumulative(obj1.getTotal_client_drives()-obj1.getTotal_with_partner_personnel());
+	 obj1.setTotal_partner_cumulative(obj1.getTotal_client_drives()-obj1.getSum_total_partner());
+	 
+	 obj1.setWith_partner_hs_cumulative_perc((obj1.getWith_partner_hs_cumulative()*100)/obj1.getTotal_client_drives());
+	 obj1.setWith_partner_personnel_cumulative_perc((obj1.getWith_partner_personnel_cumulative()*100)/obj1.getTotal_client_drives());
+	 obj1.setTotal_partner_cumulative_perc((obj1.getTotal_partner_cumulative()*100)/obj1.getTotal_client_drives());
+	 
+	 	 
+	 obj1.setRunOpex2aCalculation(runopex2acalculation);
+	 
+	return obj1;
+}
+
 }

@@ -58,14 +58,21 @@ public class InputTablesService {
 	public InputTablesDto updateInputTables(InputTablesDto inp, String inputtablesid) {
 		
         InputTablesDto old=inputRepo.findById(inputtablesid).get();
+        
+        
+        
 		old.setAnnual_inflation_perc(inp.getAnnual_inflation_perc());
 		old.setAnnual_revenue_for_client(inp.getAnnual_revenue_for_client());
 		old.setIt_spent_perc(inp.getIt_spent_perc());
 		old.setGrow_business_perc(inp.getGrow_business_perc());
 		old.setTransform_it_perc(inp.getTransform_it_perc());
 		old.setRun_business_perc(inp.getRun_business_perc());
-		InputTablesDto object=helper.calculateValue(inp);
-		return inputRepo.save(object);
+		InputTablesDto old2=helper.calculateValue(old);
+old.setGrow_business_value(old2.getGrow_business_value());
+old.setRun_business_value(old2.getRun_business_value());	
+old.setTransform_it_value(old2.getTransform_it_value());
+old.setIt_spent_value(old2.getIt_spent_value());
+		return inputRepo.save(old);
 	
 	}
 	
@@ -96,7 +103,17 @@ public class InputTablesService {
 		old1.setAvr_ctc_per_fte(itp.getAvr_ctc_per_fte());
 		old1.setPerc_eligible_forpersonal(itp.getPerc_eligible_forpersonal());
 		ItPersonnelDto object=helper.calcValue(itp,inp);
-		return itpersonalRepo.save(object);
+		old1.setAvr_ctc_final(object.getAvr_ctc_final());
+		old1.setEligible_outsource(object.getEligible_outsource());
+		old1.setGrow_fte_outsource(object.getGrow_fte_outsource());
+		old1.setGrow_fte_personal(object.getGrow_fte_personal());
+		old1.setIt_spend_outsource(object.getIt_spend_outsource());
+		old1.setPerc_eligible_forpersonal(object.getPerc_eligible_forpersonal());
+		old1.setRun_fte_outsource(object.getRun_fte_outsource());
+		old1.setRun_fte_personal(object.getRun_fte_personal());
+		old1.setTransform_fte_outsource(object.getTransform_fte_outsource());
+		old1.setTransform_fte_personal(object.getTransform_fte_personal());
+		return itpersonalRepo.save(old1);
 	}
 	
 	public List<ItPersonnelDto> getAllItPersonnel() {

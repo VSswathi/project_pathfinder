@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
 import com.example.pathfinder.dto.RunOpexModelingOutsourceDto;
+import com.example.pathfinder.dto.RunOpexModelling2ADto;
 import com.example.pathfinder.dto.RunOpexModellingDto;
 import com.example.pathfinder.dto.TotalSavingsModel2ADto;
 import com.example.pathfinder.dto.TotalSavingsModel2BDto;
@@ -58,6 +59,13 @@ public class ModelOptionsController {
 	@GetMapping("/runoutsource/{totalsavingsmodel2aid1}/{totalsavingsmodel2bid2}")
     public ResponseEntity<?> runoutsource_calculation(@PathVariable String totalsavingsmodel2aid1,@PathVariable String totalsavingsmodel2bid2) {
 		RunOpexModelingOutsourceDto input = modelService.runoutsource_calculation(totalsavingsmodel2aid1,totalsavingsmodel2bid2);
+        return ResponseEntity.ok(input);
+        
+    }
+	
+	@GetMapping("/runopex2a/{runopexoutsourceid1}")
+    public ResponseEntity<?> runopex2a_calculation(@PathVariable String runopexoutsourceid1) {
+		RunOpexModelling2ADto input = modelService.runopex2a_calculation(runopexoutsourceid1);
         return ResponseEntity.ok(input);
         
     }
