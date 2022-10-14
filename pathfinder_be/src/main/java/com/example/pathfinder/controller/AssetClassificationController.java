@@ -100,7 +100,7 @@ public class AssetClassificationController {
     }
 	
 	//9-pathfinder_asset_classification_managed
-	@PostMapping("/managed/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+	@PostMapping("/managedservices/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public ResponseEntity<AssetClassificationManagedServicesDto> managed_calc(@RequestBody AssetClassificationManagedServicesDto m,  @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3) {
         AssetClassificationManagedServicesDto val = assetService.managed_calculation(m,itrunspendid1,inputtablesid2,itspendcategoriesid3);
         return ResponseEntity.ok(val);
