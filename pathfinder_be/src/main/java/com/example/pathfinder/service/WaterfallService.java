@@ -1,5 +1,7 @@
 package com.example.pathfinder.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.pathfinder.dto.InputTablesDto;
@@ -44,6 +46,12 @@ public class WaterfallService {
 		
 		return fallRepo.save(obj2);
 				}
+
+
+	public List<WaterfallTableDto> getAllWaterfall() {
+		// TODO Auto-generated method stub
+		return fallRepo.findAll();
+	}
 
 	
 }

@@ -243,6 +243,11 @@ public class AssetClassificationService {
 		obj2= savingRepo.save(obj2);
 		return obj2;
 	}
+	
+	public List<SavingsOptimizationDto> getAllSavingsLevers() {
+		// TODO Auto-generated method stub
+		return savingRepo.findAll();
+		}
 	//13-pathfinder_itspend_run_personnel
 	public ItSpendOnRunPersonnelDto runPersonnel_calc(String itpersonnelid1, String inputtablesid2, String costtransformationid3) {
 		 InputTablesDto obj=inputRepo.findById(inputtablesid2).get();
@@ -253,6 +258,13 @@ public class AssetClassificationService {
 	        
 	        return obj3;   
 	}
+
+	public List<ItSpendOnRunPersonnelDto> getAllRunPersonnel() {
+		// TODO Auto-generated method stub
+		return itrunRepo.findAll();
+	}
+
+
 
 
 

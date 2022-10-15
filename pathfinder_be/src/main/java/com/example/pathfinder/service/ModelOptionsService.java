@@ -1,5 +1,7 @@
 package com.example.pathfinder.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +77,10 @@ public class ModelOptionsService {
 		return obj2;
 	}
 
+	public List<TotalSavingsModel2BDto> getAllTotalModel2b() {
+		// TODO Auto-generated method stub
+		return totalRepo.findAll();
+	}
 	//21-pathfinder_run_opex_fit_shore
 	public RunOpexModelingFitshoreDto runfit_calculation(String totalsavingsmodel2bid1) {
 		TotalSavingsModel2BDto fit=totalRepo.findById(totalsavingsmodel2bid1).get();		
@@ -82,14 +88,24 @@ public class ModelOptionsService {
 		obj2= opexRepo.save(obj2);
 		return obj2;        
 	}
+	public List<RunOpexModelingFitshoreDto> getAllRunFit() {
+		// TODO Auto-generated method stub
+		return opexRepo.findAll();
+	}
 
-	//21-pathfinder_run_opex_model
+	//22-pathfinder_run_opex_model
 	public RunOpexModellingDto runopex_calculation(String runopexfitid1) {
 		RunOpexModelingFitshoreDto fit=opexRepo.findById(runopexfitid1).get();		
 		RunOpexModellingDto obj2=modelHelp.runopex_calculation(fit);
 		obj2= modelRepo.save(obj2);
 		return obj2;        
 	}
+	
+	public List<RunOpexModellingDto> getAllRunOpex() {
+		// TODO Auto-generated method stub
+		return modelRepo.findAll();
+	}
+
 
 	public TotalSavingsModel2ADto model2a_calculation(String itrunspendid1, String savingoptid2,
 			String itspendrunpersid3, String assetoutsourceid4, String totalsavings2bid5) {
@@ -104,6 +120,12 @@ public class ModelOptionsService {
 		return obj2;
 	}
 
+
+	public List<TotalSavingsModel2ADto> getAllModel2a() {
+		// TODO Auto-generated method stub
+		return total2aRepo.findAll();
+	}
+	
 	public RunOpexModelingOutsourceDto runoutsource_calculation(String totalsavingsmodel2aid1,
 			String totalsavingsmodel2bid2) {
 		TotalSavingsModel2ADto modela=total2aRepo.findById(totalsavingsmodel2aid1).get();	
@@ -112,6 +134,12 @@ public class ModelOptionsService {
 		obj2= opexoutsourceRepo.save(obj2);
 		return obj2;        
 	}
+	
+	public List<RunOpexModelingOutsourceDto> getAllRunOutsource() {
+		// TODO Auto-generated method stub
+		return opexoutsourceRepo.findAll();
+	}
+
 
 	public RunOpexModelling2ADto runopex2a_calculation(String runopexoutsourceid1) {
 		RunOpexModelingOutsourceDto outsource=opexoutsourceRepo.findById(runopexoutsourceid1).get();		
@@ -119,6 +147,10 @@ public class ModelOptionsService {
 		obj2= model2aRepo.save(obj2);
 		return obj2;        
 	}
-	
+
+	public List<RunOpexModelling2ADto> getAllRunOpex2a() {
+		// TODO Auto-generated method stub
+		return model2aRepo.findAll();
+	}
 
 }

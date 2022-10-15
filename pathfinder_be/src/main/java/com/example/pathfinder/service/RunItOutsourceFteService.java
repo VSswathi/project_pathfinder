@@ -1,5 +1,7 @@
 package com.example.pathfinder.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +68,11 @@ public class RunItOutsourceFteService {
         
         return obj3;  
 	}
+	
+	public List<RunItOutsourceFteDto> getAllRunItOutsource() {
+		// TODO Auto-generated method stub
+		return itrunRepo.findAll();
+	}
 
 	//15-pathfinder_run_it_outsource_costs
 	public RunItOutsourceCostsDto runoutsource_costs_calc(String inputtablesid1, String itpersonnelid2,
@@ -81,6 +88,10 @@ public class RunItOutsourceFteService {
         return obj4;
 	}
 
+	public List<RunItOutsourceCostsDto> getAllRunCosts() {
+		// TODO Auto-generated method stub
+		return itcostRepo.findAll();
+	}
 
 	 //16-pathfinder_itpersonnel_fit_model
 	public ItPersonnelFitModelDto fit_model_calc(String inputtablesid1, String itpersonnelcostid2,
@@ -95,6 +106,11 @@ public class RunItOutsourceFteService {
         
         return obj4;
 	}
+	
+	public List<ItPersonnelFitModelDto> getAllFitModel() {
+		// TODO Auto-generated method stub
+		return fitRepo.findAll();
+	}
 	 //17-pathfinder_asset_outsource_onsite
 	public AssetOutsourceOnsiteDto outsourceOnsiteCalc(String itpersonnelid1, String costoftransid2,
 			String itspendonrunpersonelid3, String runitoutsourcecostsid4) {
@@ -107,6 +123,11 @@ public class RunItOutsourceFteService {
         obj4=outsourceonsiteRepo.save(obj4);
         
         return obj4;
+	}
+	
+	public List<AssetOutsourceOnsiteDto> getAllOutsourceOnsite() {
+		// TODO Auto-generated method stub
+		return outsourceonsiteRepo.findAll();
 	}
 	 //18-pathfinder_total_outsource_fitshore
 	public TotalOutsourcingFitshoreDto outsource_fit_calc(String itpersonnelid1, String costtransformationid2,
@@ -122,4 +143,17 @@ public class RunItOutsourceFteService {
 	        
 	        return obj4;
 	}
+
+	public List<TotalOutsourcingFitshoreDto> getAllOutsourceFit() {
+		// TODO Auto-generated method stub
+		return totalRepo.findAll();
+	}
+
+
+
+
+
+
+
+
 }

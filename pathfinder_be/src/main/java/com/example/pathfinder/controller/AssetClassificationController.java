@@ -41,7 +41,7 @@ public class AssetClassificationController {
 	
 
 
-	//7-pathfinder_asset_classification_hardware
+//7-pathfinder_asset_classification_hardware
 	@PostMapping("/hardware/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
 	 @Operation(summary = "hardware calculation")
 	  @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Success",
@@ -73,7 +73,8 @@ public class AssetClassificationController {
 	
 	
 	
-	//8-pathfinder_asset_classification_software
+//8-pathfinder_asset_classification_software
+	
 	@PostMapping("/software/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
 	public ResponseEntity<AssetClassificationSoftwareDto> software_calc(@RequestBody AssetClassificationSoftwareDto s,  @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3) {
     	AssetClassificationSoftwareDto val = assetService.software_calculation(s,itrunspendid1,inputtablesid2,itspendcategoriesid3);
@@ -99,7 +100,9 @@ public class AssetClassificationController {
         return assetService.updateSoftware(s,softwareid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
     }
 	
-	//9-pathfinder_asset_classification_managed
+	
+//9-pathfinder_asset_classification_managed
+	
 	@PostMapping("/managedservices/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public ResponseEntity<AssetClassificationManagedServicesDto> managed_calc(@RequestBody AssetClassificationManagedServicesDto m,  @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3) {
         AssetClassificationManagedServicesDto val = assetService.managed_calculation(m,itrunspendid1,inputtablesid2,itspendcategoriesid3);
@@ -125,8 +128,10 @@ public class AssetClassificationController {
         return assetService.updateManagedServices(m,managedid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
     }
 	
+	
 //	10-pathfinder_asset_classification_hosted
-	@PostMapping("/hosted/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
+	
+	@PostMapping("/hostedcbs/{itrunspendid1}/{inputtablesid2}/{itspendcategoriesid3}")
     public ResponseEntity<AssetClassificationHostedCbsDto> hosted_calc(@RequestBody AssetClassificationHostedCbsDto host,  @PathVariable String itrunspendid1, @PathVariable String inputtablesid2, @PathVariable String itspendcategoriesid3) {
         AssetClassificationHostedCbsDto val = assetService.hosted_calculation(host,itrunspendid1,inputtablesid2,itspendcategoriesid3);
         return ResponseEntity.ok(val);
@@ -151,7 +156,8 @@ public class AssetClassificationController {
         return assetService.updateHostedcbs(host,hostedid,itrunspendid1,inputtablesid2,itspendcategoriesid3);
     }
 	
-	//11-pathfinder_asset_total
+	
+//11-pathfinder_asset_total
 	
 	@GetMapping("/itspendasset/{hardwareid1}/{softwareid2}/{managedid3}/{hostedid4}")
     public ResponseEntity<?> itSpend_calc(@PathVariable String hardwareid1,@PathVariable String softwareid2,@PathVariable String managedid3,@PathVariable String hostedid4) {
@@ -166,7 +172,10 @@ public class AssetClassificationController {
 	 		return new ResponseEntity<List<AssetClassificationDto>>(inp2, HttpStatus.OK);
 	 }
 	
-	//12-pathfinder_saving_optimization
+	
+	
+//12-pathfinder_saving_optimization
+
 	@GetMapping("/savinglevers/{hardwareid1}/{softwareid2}/{managedid3}/{hostedid4}/{itpersonelid5}/{costtransid6}/{itrunspendid7}")
     public ResponseEntity<?> saving_calc(@PathVariable String hardwareid1,@PathVariable String softwareid2,@PathVariable String managedid3,@PathVariable String hostedid4,@PathVariable String itpersonelid5,@PathVariable String costtransid6,@PathVariable String itrunspendid7) {
 		SavingsOptimizationDto input = assetService.saving_calculation(hardwareid1, softwareid2, managedid3,hostedid4,itpersonelid5,costtransid6,itrunspendid7);
@@ -174,12 +183,26 @@ public class AssetClassificationController {
         
     }
 	
-	//13-pathfinder_itspend_run_personnel
-	 @GetMapping("/runpersonnel/{itpersonnelid1}/{inputtablesid2}/{costtransformationid3}")
+	@GetMapping("/savinglevers")    
+	   public ResponseEntity<List<SavingsOptimizationDto>> getAllSavingsLevers() {   
+	    List<SavingsOptimizationDto> inp2 = assetService.getAllSavingsLevers(); 
+	 		return new ResponseEntity<List<SavingsOptimizationDto>>(inp2, HttpStatus.OK);
+	 }
+	
+	
+//13-pathfinder_itspend_run_personnel
+
+	@GetMapping("/runpersonnel/{itpersonnelid1}/{inputtablesid2}/{costtransformationid3}")
 	    public ResponseEntity<?> runPersonnel_calc(@PathVariable String itpersonnelid1,@PathVariable String inputtablesid2,@PathVariable String costtransformationid3) {
 		 ItSpendOnRunPersonnelDto input = assetService.runPersonnel_calc(itpersonnelid1, inputtablesid2, costtransformationid3);
 	        return ResponseEntity.ok(input);
 	        
 	    }
+	 
+	 @GetMapping("/runpersonnel")    
+	   public ResponseEntity<List<ItSpendOnRunPersonnelDto>> getAllRunPersonnel() {   
+	    List<ItSpendOnRunPersonnelDto> inp2 = assetService.getAllRunPersonnel(); 
+	 		return new ResponseEntity<List<ItSpendOnRunPersonnelDto>>(inp2, HttpStatus.OK);
+	 }
 	
 }

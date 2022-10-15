@@ -75,6 +75,7 @@ public class InputTablesController {
        return inpService.updateInputTables( inp, inputtablesid);
    }
  
+   
 // 2-pathfinder_it_personnel
     
    @PostMapping("/itpersonel/{inputtablesid}")
@@ -190,4 +191,10 @@ public class InputTablesController {
         return ResponseEntity.ok(input);
         
     }
+    
+    @GetMapping("/itrun")    
+    public ResponseEntity<List<ItRunSpendDto>> getAllItRunSpendId() {   
+     List<ItRunSpendDto> inp2 = inpService.getAllItSpendCatId(); 
+  		return new ResponseEntity<List<ItRunSpendDto>>(inp2, HttpStatus.OK);
+  	}
 }
