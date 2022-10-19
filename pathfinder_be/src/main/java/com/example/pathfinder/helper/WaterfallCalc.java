@@ -25,7 +25,6 @@ public class WaterfallCalc {
 		obj.setExit_runrate_without_partner(modela.getModel2acalculation().get(2).getTotals_client_spend_without_partner());
 		
 		obj.setRunrate_reduc_with_partner(Math.abs(obj.getExit_runrate_with_partner()-obj.getBaseyear_with_partner()));
-//		System.out.println("exit run rate" +obj.getExit_runrate_without_partner()+"base"+obj.getBaseyear_without_partner()+"run"+obj.getRunrate_perc_without_partner());
 		obj.setRunrate_reduc_without_partner(obj.getExit_runrate_without_partner()-obj.getBaseyear_without_partner());
 		obj.setRunrate_perc_with_partner((obj.getRunrate_reduc_with_partner()*100)/obj.getBaseyear_with_partner());
 		obj.setRunrate_perc_without_partner((obj.getRunrate_reduc_without_partner()*100)/obj.getBaseyear_without_partner());

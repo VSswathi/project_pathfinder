@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 @Data
 @Document (collection="pathfinder_total_savings_model2a")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TotalSavingsModel2ADto {
 
 	private String id;

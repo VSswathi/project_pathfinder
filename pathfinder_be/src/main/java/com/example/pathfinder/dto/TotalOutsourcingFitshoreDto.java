@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 @Data
 @Document(collection="pathfinder_total_outsource_fitshore")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TotalOutsourcingFitshoreDto {
 	private String id;
 	private long sum_totoal_outsource_fit;

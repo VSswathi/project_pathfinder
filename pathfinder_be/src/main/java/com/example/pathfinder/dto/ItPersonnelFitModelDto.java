@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 @Data
 @Document(collection="pathfinder_itpersonnel_fit_model")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ItPersonnelFitModelDto {
 	private String id;
 	private int client_baseyear;

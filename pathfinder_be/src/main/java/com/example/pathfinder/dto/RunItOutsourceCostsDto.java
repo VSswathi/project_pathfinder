@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 @Data
 @Document(collection="pathfinder_run_it_outsource_costs")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunItOutsourceCostsDto {
 	private String id;
 	private int client_spend_baseyear;

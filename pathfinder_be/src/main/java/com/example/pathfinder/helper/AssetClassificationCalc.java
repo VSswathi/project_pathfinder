@@ -135,7 +135,6 @@ public class AssetClassificationCalc {
 			obj2.setSpendIncreaseWithInflation_h((long) Math.round(initial_spend_increase+(initial_spend_increase*(double)inp.getAnnual_inflation_perc()/100)));
 			
 			initial_spend_increase = obj2.getSpendIncreaseWithInflation_h();
-				System.out.println("spend increase with infl "+ obj2.getSpendIncreaseWithInflation_h());
 			
 			
 			obj2.setSavingSubtotal_perc_h(obj2.getEliminate_reducdancyElimination()+obj2.getEliminate_retireDecommision()+obj2.getConsolidate_realignRedistribute()+obj2.getRationalize_automateMl());
@@ -200,7 +199,6 @@ public class AssetClassificationCalc {
 		obj4.setSpendIncreaseWithInflation_s((long) Math.round(initial_spend_increase+(initial_spend_increase*(double)inp.getAnnual_inflation_perc()/100)));
 		
 		initial_spend_increase = obj4.getSpendIncreaseWithInflation_s();
-			System.out.println("spend increase with infl "+ obj4.getSpendIncreaseWithInflation_s());
 		
 		
 		obj4.setSavingSubtotal_perc_s(obj4.getRationalize_refactor()+obj4.getStd_platform()+obj4.getTransform_distributed_agile()+obj4.getEliminate_redundancy());
@@ -262,7 +260,6 @@ public class AssetClassificationCalc {
 		obj2.setSpendIncreaseWithInflation_m((long) Math.round(initial_spend_increase+(initial_spend_increase*(double)inp.getAnnual_inflation_perc()/100)));
 		
 		initial_spend_increase = obj2.getSpendIncreaseWithInflation_m();
-			System.out.println("spend increase with infl "+ obj2.getSpendIncreaseWithInflation_m());
 		
 		
 		obj2.setSavingSubtotal_perc_m(obj2.getIndustrialize_shiftleft()+obj2.getIndustrialize_automate()+obj2.getIndustrialize_realtime()+obj2.getSynergize_selfservice());
@@ -321,7 +318,6 @@ public class AssetClassificationCalc {
 		obj2.setSpendIncreaseWithInflation_host((long) Math.round(initial_spend_increase+(initial_spend_increase*(double)inp.getAnnual_inflation_perc()/100)));
 		
 		initial_spend_increase = obj2.getSpendIncreaseWithInflation_host();
-			System.out.println("spend increase with infl "+ obj2.getSpendIncreaseWithInflation_host());
 		
 		
 		obj2.setSavingSubtotal_perc_host(obj2.getTransform_cloud());
@@ -391,7 +387,6 @@ public class AssetClassificationCalc {
 		      initial_cot_value=cot_partner_value;
 		      
 		      total_saving_levers =obj2.getTotal_savings_model();
-//		      total_cot_partner_share= obj2.getTotal_cot_partner();
 		      
 		      savingcalc.add(obj2);
 		

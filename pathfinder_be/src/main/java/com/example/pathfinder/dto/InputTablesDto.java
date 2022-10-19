@@ -3,12 +3,15 @@ package com.example.pathfinder.dto;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 
 
 @Data
 @Document(collection="pathfinder_input_tables")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InputTablesDto {
 	
 	private String id;

@@ -120,7 +120,6 @@ public class CalculationHelper {
 		            i.setInFteOnsite((long)Math.round((double)i.getNetPartnerFte()*(double) onsiteratiopercentage1));
 		            i.setInFteOffshore((long) Math.round((double)i.getNetPartnerFte()-(double)i.getInFteOnsite()));
 		            years.add(i);
-		            System.out.println("In fte Cumulative= "+i.getInfteCumulative()+", In fte savings cumulative= "+i.getFteSavingsCumulative() + ", net partner Ftes= " + i.getNetPartnerFte() + ", In fte Onsite= "+ i.getInFteOnsite() + ", In fte offshore= "+ i.getInFteOffshore());
 		        }
 		    
 		        obj3.setYearBseCalculations(years);

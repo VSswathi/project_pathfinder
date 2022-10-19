@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 @Data
 @Document (collection="pathfinder_run_opex_outsource")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RunOpexModelingOutsourceDto {
 
 	private String id;

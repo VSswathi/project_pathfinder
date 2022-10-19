@@ -2,10 +2,13 @@ package com.example.pathfinder.dto;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Data;
 
 @Data
 @Document(collection="pathfinder_it_functions")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ItFunctionsDto {
 	private String id;
 	private double data_center_itspend_run_perc;
