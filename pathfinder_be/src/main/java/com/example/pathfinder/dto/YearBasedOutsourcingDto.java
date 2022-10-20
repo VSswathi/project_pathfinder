@@ -22,5 +22,17 @@ public class YearBasedOutsourcingDto {
 	private double offshoreRatio;
 	private long inFteOffshore;
 	
-
+	public YearBasedOutsourcingDto(int yearLine, double takeOverPlan, double ppImprovement, double onsiteRatio,
+			double offshoreRatio) {
+		super();
+		this.yearLine = yearLine;
+		this.takeOverPlan = takeOverPlan;
+		this.ppImprovement = ppImprovement;
+		this.onsiteRatio = onsiteRatio;
+		this.offshoreRatio = offshoreRatio;
+	}
+	
+	public YearBasedOutsourcingDto() {
+		
+	}
 }

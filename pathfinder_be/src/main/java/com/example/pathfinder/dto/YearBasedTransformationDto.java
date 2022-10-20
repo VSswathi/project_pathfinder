@@ -14,5 +14,15 @@ public class YearBasedTransformationDto {
 	private long client_share_value;
 	private long partner_share_value;
 	private long total_with_inflation;
+	
+	public YearBasedTransformationDto(int year, double cot_spread_perc) {
+		super();
+		this.year = year;
+		this.cot_spread_perc = cot_spread_perc;
+	}
 
+	public YearBasedTransformationDto()
+	{
+		
+	}
 }

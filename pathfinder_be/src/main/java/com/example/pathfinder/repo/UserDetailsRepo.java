@@ -3,12 +3,12 @@ package com.example.pathfinder.repo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.pathfinder.dto.UserDetailsDto;
 import com.example.pathfinder.dto.UserInputDto;
 
 @Repository
-public interface UserInputRepo extends MongoRepository<UserInputDto, String>{
+public interface UserDetailsRepo extends MongoRepository<UserDetailsDto,String>{
 
-	UserInputDto findByUserIdAndProjectName(String userId, String projectName);
-
+	UserDetailsDto save(UserInputDto calculated);
 
 }

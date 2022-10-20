@@ -24,4 +24,18 @@ public class ItPersonalCostDto {
 	
 	private List<YearBasedOutsourcingDto> yearBseCalculations;
 	
+	public ItPersonalCostDto(long partnerCtcOnsite, long partnerCtcOffshore, double onsitRatio, double offshoreRatio,
+			List<YearBasedOutsourcingDto> yearBseCalculations) {
+		super();
+		this.partnerCtcOnsite = partnerCtcOnsite;
+		this.partnerCtcOffshore = partnerCtcOffshore;
+		this.onsitRatio = onsitRatio;
+		this.offshoreRatio = offshoreRatio;
+		this.yearBseCalculations = yearBseCalculations;
+	}
+	
+	public ItPersonalCostDto() {
+		
+	}
+	
 }

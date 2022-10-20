@@ -17,5 +17,17 @@ public class ItSpendCategoriesDto {
 	private double software;
 	private double hosted_cbs;
 	private double managedServices;
+	public ItSpendCategoriesDto(int year, double hardware, double software, double hosted_cbs, double managedServices) {
+		super();
+		this.year = year;
+		this.hardware = hardware;
+		this.software = software;
+		this.hosted_cbs = hosted_cbs;
+		this.managedServices = managedServices;
+	}
+	
+	public ItSpendCategoriesDto() {
+		
+	}
 	
 }

@@ -23,8 +23,20 @@ public class CostofTransformationDto {
 	private double partner_perc;
 	private long partner_value;
 	
-	
 	private List<YearBasedTransformationDto> yearBaseCostCalculations;
+	
+	public CostofTransformationDto(double cot_perc, double client_perc, double partner_perc,
+			List<YearBasedTransformationDto> yearBaseCostCalculations) {
+		super();
+		this.cot_perc = cot_perc;
+		this.client_perc = client_perc;
+		this.partner_perc = partner_perc;
+		this.yearBaseCostCalculations = yearBaseCostCalculations;
+	}
 
+
+	public CostofTransformationDto() {
+		
+	}
 	
 }

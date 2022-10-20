@@ -1,6 +1,7 @@
 package com.example.pathfinder.controller;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.pathfinder.dto.UserDetailsDto;
 import com.example.pathfinder.dto.UserInputDto;
 import com.example.pathfinder.dto.UserValuesDto;
+import com.example.pathfinder.response.ProjectNameOnly;
 import com.example.pathfinder.service.UserInputService;
 
 
@@ -41,6 +44,17 @@ public class UserInputController {
 	    Optional<UserInputDto> inp2 = userService.getByInputId(inputid); 
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
+	 
+//	 @GetMapping("/input/userid/projectname")
+//		public ResponseEntity<List<UserInputDto>> getByProjectDetails(@PathVariable String userid) {
+//			return new ResponseEntity<List<UserInputDto>>(userService.findByProjectName(name), HttpStatus.OK);
+//		}
+	 
+	 @GetMapping("/input/projectname")
+		public ResponseEntity<ProjectNameOnly> list_allProjectName() {
+		 ProjectNameOnly res=userService.getAllProjectNAme_only();
+		 return ResponseEntity.ok(res);
+		}
 	 
 	 @GetMapping("/input")    
 	   public ResponseEntity<List<UserInputDto>> getAllUserInputs() {   
@@ -72,6 +86,21 @@ public class UserInputController {
 	        return ResponseEntity.ok(input);
 	        
 	    }
+
+//User Details(First page)
+	 
+	 @PostMapping("/details")
+	   public ResponseEntity<UserInputDto> userDetails(@RequestBody UserDetailsDto inp) {
+		 UserInputDto input = userService.userDetails(inp);
+	       return ResponseEntity.ok(input);    
+	   }
+	 
+	 @GetMapping("/details/{detalsid}")    
+	   public ResponseEntity<UserDetailsDto> getByDetailsId(@PathVariable String detalsid) {   
+	    Optional<UserDetailsDto> inp2 = userService.getByDetailsId(detalsid); 
+	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
+	 	}
+	 
 	 
 	 
 }

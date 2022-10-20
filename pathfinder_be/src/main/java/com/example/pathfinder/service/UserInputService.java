@@ -1,5 +1,6 @@
 package com.example.pathfinder.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,16 +32,20 @@ import com.example.pathfinder.dto.SavingsOptimizationDto;
 import com.example.pathfinder.dto.TotalOutsourcingFitshoreDto;
 import com.example.pathfinder.dto.TotalSavingsModel2ADto;
 import com.example.pathfinder.dto.TotalSavingsModel2BDto;
+import com.example.pathfinder.dto.UserDetailsDto;
 import com.example.pathfinder.dto.UserInputDto;
 import com.example.pathfinder.dto.UserValuesDto;
+import com.example.pathfinder.dto.WaterfallTableDto;
 import com.example.pathfinder.helper.AssetClassificationCalc;
 import com.example.pathfinder.helper.CalculationHelper;
 import com.example.pathfinder.helper.ItFunctionsCalc;
 import com.example.pathfinder.helper.ModelOptionsCalc;
 import com.example.pathfinder.helper.RunItOutsourceCalc;
 import com.example.pathfinder.helper.WaterfallCalc;
+import com.example.pathfinder.repo.UserDetailsRepo;
 import com.example.pathfinder.repo.UserInputRepo;
 import com.example.pathfinder.repo.UserValuesRepo;
+import com.example.pathfinder.response.ProjectNameOnly;
 
 @Service
 public class UserInputService {
@@ -61,6 +66,8 @@ public class UserInputService {
 	WaterfallCalc waterfall;
 	@Autowired
 	UserValuesRepo valueRepo;
+	@Autowired
+	UserDetailsRepo detailRepo;
 
 // EXISTING USER json
 	
@@ -70,6 +77,7 @@ public class UserInputService {
 		
 		return obj;
 	}
+	
 	
 	public UserInputDto calculate(UserInputDto inp){
 		InputTablesDto input_A=helper.calculateValue(inp.getInputvalues());
@@ -98,9 +106,10 @@ public class UserInputService {
 		TotalSavingsModel2ADto input_d= model.model2a_calculation(input_F, input_L, input_M, input_Q, input_a);
 		RunOpexModelingOutsourceDto input_e= model.runoutsource_calculation(input_d, input_a);
 		RunOpexModelling2ADto input_f= model.runopex2a_calculation(input_e);
-		
+		WaterfallTableDto input_g=waterfall.calculateValue(input_a, input_d);
 		
 		UserInputDto final_json=new UserInputDto();
+		final_json.setUserId(inp.getUserId());
 		final_json.setProjectName(inp.getProjectName());
 		final_json.setInputvalues(input_A);
 		final_json.setItpersonnel(input_B);
@@ -128,6 +137,7 @@ public class UserInputService {
 		final_json.setTotal2A(input_d);
 		final_json.setRunopexoutsource(input_e);
 		final_json.setModel2A(input_f);
+		final_json.setWaterfall(input_g);
 
 		return final_json;
 	}
@@ -135,7 +145,7 @@ public class UserInputService {
 	public Optional<UserInputDto> getByInputId(String inputid) {
 		return inputRepo.findById(inputid);
 	}
-	
+
 	public List<UserInputDto> getAllUserInputs() {
 		return inputRepo.findAll();
 	}
@@ -144,6 +154,7 @@ public class UserInputService {
 	public UserInputDto updateUserInput(UserInputDto tocalculate, String inputid) {
 		UserInputDto final_json =inputRepo.findById(inputid).get();
 		 final_json=calculate(tocalculate);
+		 final_json.setId(inputid);
 		return inputRepo.save(final_json);
 	}
 	
@@ -153,6 +164,7 @@ public class UserInputService {
 		obj.setAnnual_revenue_for_client(inp);
 		final_json.setInputvalues(obj);
 		final_json=calculate(final_json);
+		final_json.setId(inputid);
 
 		return inputRepo.save(final_json);
 	}
@@ -188,5 +200,32 @@ public class UserInputService {
 		
 	}
 
+	public ProjectNameOnly getAllProjectNAme_only() {
+		List<UserInputDto> obj=inputRepo.findAll();
+		List<String> projectName=new ArrayList<>();
+		for(UserInputDto nn:obj) {
+			projectName.add(nn.getProjectName());
+		}
+		ProjectNameOnly obj1=new ProjectNameOnly();
+		obj1.setListOfProjectName(projectName);
+	
+		return obj1;
+	}
+	
+	
+	
+//User Details(First page)
+	
+	public UserInputDto userDetails(UserDetailsDto inp) {
+		UserInputDto obj=inputRepo.findByUserIdAndProjectName(inp.getUserId(),inp.getProjectName());
+		
+		return obj;
+	}
 
+
+	public Optional<UserDetailsDto> getByDetailsId(String detalsid) {
+		return detailRepo.findById(detalsid);
+	}
+
+	
 }
