@@ -23,5 +23,12 @@ public class AssetClassificationHostedCbsDto {
 	private float total_value_host;
 	
 	private List<AssetClassificationHostedCbsYear> hosted_cbsCalculations;
-	
+
+	public AssetClassificationHostedCbsDto(List<AssetClassificationHostedCbsYear> hosted_cbsCalculations) {
+		super();
+		this.hosted_cbsCalculations = hosted_cbsCalculations;
+	}
+	public AssetClassificationHostedCbsDto() {
+		
+	}
 }

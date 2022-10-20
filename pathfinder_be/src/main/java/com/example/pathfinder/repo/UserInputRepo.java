@@ -14,5 +14,9 @@ public interface UserInputRepo extends MongoRepository<UserInputDto, String>{
 
 	List<UserInputDto> findByUserId(String userid);
 
+	List<UserInputDto> findByProjectName(String projectname);
+
+	List<UserInputDto> findByProjectName();
+
 
 }

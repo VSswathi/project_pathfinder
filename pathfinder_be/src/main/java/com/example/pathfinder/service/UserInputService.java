@@ -45,6 +45,7 @@ import com.example.pathfinder.helper.WaterfallCalc;
 import com.example.pathfinder.repo.UserDetailsRepo;
 import com.example.pathfinder.repo.UserInputRepo;
 import com.example.pathfinder.repo.UserValuesRepo;
+import com.example.pathfinder.response.Project;
 import com.example.pathfinder.response.ProjectNameOnly;
 
 @Service
@@ -200,8 +201,21 @@ public class UserInputService {
 		
 	}
 
+	public ProjectNameOnly getAllProjectNAme_only() {
+        List<UserInputDto> obj=inputRepo.findAll();
+        List<String> projectName=new ArrayList<>();
+        for(UserInputDto nn:obj) {
+            projectName.add(nn.getProjectName());
+        }
+        ProjectNameOnly obj1=new ProjectNameOnly();
+        obj1.setListOfProjectName(projectName);
+//        obj1.setStatus("SUCCESS");
+    
+        return obj1;
+	}
+
 	public ProjectNameOnly getAllProjectNAme_only(String userid) {
-//		List<UserInputDto> obj=inputRepo.findAll();
+
 		List<UserInputDto> obj=inputRepo.findByUserId(userid);
 		List<String> projectName=new ArrayList<>();
 		for(UserInputDto nn:obj) {
@@ -227,6 +241,22 @@ public class UserInputService {
 	public Optional<UserDetailsDto> getByDetailsId(String detalsid) {
 		return detailRepo.findById(detalsid);
 	}
+
+
+	public Project get_byProjectName(String projectname) {
+		List<UserInputDto> obj=inputRepo.findByProjectName(projectname);
+		List<String> projectName=new ArrayList<>();
+		for(UserInputDto nn:obj) {
+			projectName.add(nn.getProjectName());
+		}
+		Project obj1=new Project();
+		obj1.setProjectName(projectname);
+	
+		return obj1;
+	}
+
+
+
 
 	
 }

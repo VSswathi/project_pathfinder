@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.pathfinder.dto.UserDetailsDto;
 import com.example.pathfinder.dto.UserInputDto;
 import com.example.pathfinder.dto.UserValuesDto;
+import com.example.pathfinder.response.Project;
 import com.example.pathfinder.response.ProjectNameOnly;
 import com.example.pathfinder.service.UserInputService;
 
@@ -46,9 +47,21 @@ public class UserInputController {
 	 	}
 	 
 	 
+	 @GetMapping("/input/name")
+     public ResponseEntity<ProjectNameOnly> list_allProjectName() {
+      ProjectNameOnly res=userService.getAllProjectNAme_only();
+      return ResponseEntity.ok(res);
+     }
+	 
 	 @GetMapping("/input/projectname/{userid}")
 		public ResponseEntity<ProjectNameOnly> list_allProjectName(@PathVariable String userid) {
 		 ProjectNameOnly res=userService.getAllProjectNAme_only(userid);
+		 return ResponseEntity.ok(res);
+		}
+	 
+	 @GetMapping("/input/project/{projectname}")
+		public ResponseEntity<Project> get_byProjectName(@PathVariable String projectname) {
+		 Project res=userService.get_byProjectName(projectname);
 		 return ResponseEntity.ok(res);
 		}
 	 

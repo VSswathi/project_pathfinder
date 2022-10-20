@@ -33,6 +33,16 @@ public class AssetClassificationManagedServicesDto {
     
     private List<AssetClassificationManagedServicesYear> managed_servicesCalculations;
 
+	public AssetClassificationManagedServicesDto(
+			List<AssetClassificationManagedServicesYear> managed_servicesCalculations) {
+		super();
+		this.managed_servicesCalculations = managed_servicesCalculations;
+	}
+	public AssetClassificationManagedServicesDto() {
+		
+	}
+
+    
 
 
 }

@@ -26,4 +26,12 @@ public class AssetClassificationSoftwareDto {
 	
 	private List<AssetClassificationSoftwareYear> softwareCalculations;
 
+	public AssetClassificationSoftwareDto(List<AssetClassificationSoftwareYear> softwareCalculations) {
+		super();
+		this.softwareCalculations = softwareCalculations;
+	}
+
+	public AssetClassificationSoftwareDto() {}
+	
+
 }
