@@ -28,4 +28,16 @@ public class AssetClassificationHardwareDto {
 	
 	private List<AssetClassificationHardwareYear> hardwareCalculations;
 
+
+	public AssetClassificationHardwareDto(List<AssetClassificationHardwareYear> hardwareCalculations) {
+		super();
+		this.hardwareCalculations = hardwareCalculations;
+	}
+
+	public AssetClassificationHardwareDto()
+	{
+		
+	}
+	
+	
 }

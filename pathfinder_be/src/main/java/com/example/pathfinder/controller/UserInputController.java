@@ -45,14 +45,10 @@ public class UserInputController {
 	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
 	 	}
 	 
-//	 @GetMapping("/input/userid/projectname")
-//		public ResponseEntity<List<UserInputDto>> getByProjectDetails(@PathVariable String userid) {
-//			return new ResponseEntity<List<UserInputDto>>(userService.findByProjectName(name), HttpStatus.OK);
-//		}
 	 
-	 @GetMapping("/input/projectname")
-		public ResponseEntity<ProjectNameOnly> list_allProjectName() {
-		 ProjectNameOnly res=userService.getAllProjectNAme_only();
+	 @GetMapping("/input/projectname/{userid}")
+		public ResponseEntity<ProjectNameOnly> list_allProjectName(@PathVariable String userid) {
+		 ProjectNameOnly res=userService.getAllProjectNAme_only(userid);
 		 return ResponseEntity.ok(res);
 		}
 	 

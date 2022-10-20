@@ -200,8 +200,9 @@ public class UserInputService {
 		
 	}
 
-	public ProjectNameOnly getAllProjectNAme_only() {
-		List<UserInputDto> obj=inputRepo.findAll();
+	public ProjectNameOnly getAllProjectNAme_only(String userid) {
+//		List<UserInputDto> obj=inputRepo.findAll();
+		List<UserInputDto> obj=inputRepo.findByUserId(userid);
 		List<String> projectName=new ArrayList<>();
 		for(UserInputDto nn:obj) {
 			projectName.add(nn.getProjectName());
