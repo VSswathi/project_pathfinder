@@ -60,8 +60,8 @@ public class UserInputController {
 		}
 	 
 	 @GetMapping("/input/project/{projectname}")
-		public ResponseEntity<Project> get_byProjectName(@PathVariable String projectname) {
-		 Project res=userService.get_byProjectName(projectname);
+		public ResponseEntity<UserInputDto> get_byProjectName(@PathVariable String projectname) {
+		 UserInputDto res=userService.get_byProjectName(projectname);
 		 return ResponseEntity.ok(res);
 		}
 	 

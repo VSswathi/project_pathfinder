@@ -243,16 +243,10 @@ public class UserInputService {
 	}
 
 
-	public Project get_byProjectName(String projectname) {
-		List<UserInputDto> obj=inputRepo.findByProjectName(projectname);
-		List<String> projectName=new ArrayList<>();
-		for(UserInputDto nn:obj) {
-			projectName.add(nn.getProjectName());
-		}
-		Project obj1=new Project();
-		obj1.setProjectName(projectname);
+	public UserInputDto get_byProjectName(String projectname) {
+		UserInputDto obj=inputRepo.findByProjectName(projectname);
 	
-		return obj1;
+		return obj;
 	}
 
 
