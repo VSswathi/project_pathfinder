@@ -100,6 +100,7 @@ public class UserInputService {
 		AssetOutsourceOnsiteDto input_Q=runcalc.outsourceOnsiteCalc(input_B, input_D, input_M, input_O);
 		TotalOutsourcingFitshoreDto input_R=runcalc.outsourceFitCalc(input_B, input_D, input_P, input_M);
 		ItFunctionsDto input_S=func.calculateValue(inp.getItfunctions(), input_A, input_B);
+		AssetClassificationDto input_T= help.itspendcalculation(input_G, input_H, input_I, input_J);
 		
 		TotalSavingsModel2BDto input_a= model.model2bcalculation(input_F, input_L, input_M, input_R);
 		RunOpexModelingFitshoreDto input_b= model.runfit_calculation(input_a);
@@ -131,6 +132,7 @@ public class UserInputService {
 		final_json.setOutsourceonsite(input_Q);
 		final_json.setTotalfitshore(input_R);
 		final_json.setItfunctions(input_S);
+		final_json.setAsset(input_T);
 		
 		final_json.setTotal2B(input_a);
 		final_json.setRunopexfit(input_b);
@@ -139,7 +141,7 @@ public class UserInputService {
 		final_json.setRunopexoutsource(input_e);
 		final_json.setModel2A(input_f);
 		final_json.setWaterfall(input_g);
-
+		
 		return final_json;
 	}
 
