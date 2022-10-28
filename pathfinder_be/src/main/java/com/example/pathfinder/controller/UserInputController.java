@@ -2,6 +2,7 @@ package com.example.pathfinder.controller;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pathfinder.dto.UserDetailsDto;
 import com.example.pathfinder.dto.UserInputDto;
 import com.example.pathfinder.dto.UserValuesDto;
-import com.example.pathfinder.response.Project;
 import com.example.pathfinder.response.ProjectNameOnly;
 import com.example.pathfinder.service.UserInputService;
 
@@ -98,17 +97,17 @@ public class UserInputController {
 
 //User Details(First page)
 	 
-	 @PostMapping("/details")
-	   public ResponseEntity<UserInputDto> userDetails(@RequestBody UserDetailsDto inp) {
-		 UserInputDto input = userService.userDetails(inp);
-	       return ResponseEntity.ok(input);    
-	   }
+//	 @PostMapping("/details")
+//	   public ResponseEntity<UserInputDto> userDetails(@RequestBody UserDetailsDto inp) {
+//		 UserInputDto input = userService.userDetails(inp);
+//	       return ResponseEntity.ok(input);    
+//	   }
 	 
-	 @GetMapping("/details/{detalsid}")    
-	   public ResponseEntity<UserDetailsDto> getByDetailsId(@PathVariable String detalsid) {   
-	    Optional<UserDetailsDto> inp2 = userService.getByDetailsId(detalsid); 
-	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
-	 	}
+//	 @GetMapping("/details/{detalsid}")    
+//	   public ResponseEntity<UserDetailsDto> getByDetailsId(@PathVariable String detalsid) {   
+//	    Optional<UserDetailsDto> inp2 = userService.getByDetailsId(detalsid); 
+//	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
+//	 	}
 	 
 	 
 	 

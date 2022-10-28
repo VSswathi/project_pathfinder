@@ -10,8 +10,8 @@ import lombok.Data;
 public class ItRunYearlyDto {
 
 	private int year;
-	private double itSpendWithInflation;
-	private double cotClientShare;
-	private double yearlyRunRate;
+	private long itSpendWithInflation;
+	private long cotClientShare;
+	private long yearlyRunRate;
 	
 }

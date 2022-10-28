@@ -19,7 +19,7 @@ import com.example.pathfinder.dto.YearBasedTransformationDto;
 public class CalculationHelper {
 
 	
-	//1-pathfinder_input_tables
+//1-pathfinder_input_tables
 	
 	public InputTablesDto calculateValue(InputTablesDto inp) {
 		InputTablesDto obj=new InputTablesDto();
@@ -43,7 +43,7 @@ public class CalculationHelper {
 	}
 	
 	
-	// 2-pathfinder_it_personnel
+// 2-pathfinder_it_personnel
 	
 	public ItPersonnelDto calcValue(ItPersonnelDto itp,InputTablesDto inp) {
 		ItPersonnelDto obj7= new ItPersonnelDto();
@@ -73,7 +73,7 @@ public class CalculationHelper {
 		
 	}
 
-	// 3-pathfinder_it_personnel_cost 
+// 3-pathfinder_it_personnel_cost 
 	
 	public ItPersonalCostDto yearBasedCalculation(ItPersonnelDto itp, ItPersonalCostDto inp) {	   
 		        ItPersonalCostDto obj3=new ItPersonalCostDto();
@@ -120,6 +120,7 @@ public class CalculationHelper {
 		            i.setInFteOnsite((long)Math.round((double)i.getNetPartnerFte()*(double) onsiteratiopercentage1));
 		            i.setInFteOffshore((long) Math.round((double)i.getNetPartnerFte()-(double)i.getInFteOnsite()));
 		            years.add(i);
+		            System.out.println("In fte Cumulative= "+i.getInfteCumulative()+", In fte savings cumulative= "+i.getFteSavingsCumulative() + ", net partner Ftes= " + i.getNetPartnerFte() + ", In fte Onsite= "+ i.getInFteOnsite() + ", In fte offshore= "+ i.getInFteOffshore());
 		        }
 		    
 		        obj3.setYearBseCalculations(years);
@@ -128,7 +129,7 @@ public class CalculationHelper {
 		    }
 	
 	
-	// 4-pathfinder_cost_of_transformation
+// 4-pathfinder_cost_of_transformation
 	
 	public CostofTransformationDto YearBasedTransformation( CostofTransformationDto cot,InputTablesDto inp) {
 		
@@ -172,7 +173,7 @@ public class CalculationHelper {
 	}
 	
 	
-	// 5-pathfinder_it_spend_categories
+// 5-pathfinder_it_spend_categories
 	
 	public ItSpendCategoriesDto itspend_categories_calc(ItSpendCategoriesDto isc) {
 		
@@ -185,4 +186,5 @@ public class CalculationHelper {
 		
 		return isc;
 	}
+	
 }

@@ -1,6 +1,7 @@
 package com.example.pathfinder.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,6 @@ import com.example.pathfinder.dto.SavingsOptimizationDto;
 import com.example.pathfinder.dto.TotalOutsourcingFitshoreDto;
 import com.example.pathfinder.dto.TotalSavingsModel2ADto;
 import com.example.pathfinder.dto.TotalSavingsModel2BDto;
-import com.example.pathfinder.dto.UserDetailsDto;
 import com.example.pathfinder.dto.UserInputDto;
 import com.example.pathfinder.dto.UserValuesDto;
 import com.example.pathfinder.dto.WaterfallTableDto;
@@ -45,7 +45,6 @@ import com.example.pathfinder.helper.WaterfallCalc;
 import com.example.pathfinder.repo.UserDetailsRepo;
 import com.example.pathfinder.repo.UserInputRepo;
 import com.example.pathfinder.repo.UserValuesRepo;
-import com.example.pathfinder.response.Project;
 import com.example.pathfinder.response.ProjectNameOnly;
 
 @Service
@@ -100,7 +99,6 @@ public class UserInputService {
 		AssetOutsourceOnsiteDto input_Q=runcalc.outsourceOnsiteCalc(input_B, input_D, input_M, input_O);
 		TotalOutsourcingFitshoreDto input_R=runcalc.outsourceFitCalc(input_B, input_D, input_P, input_M);
 		ItFunctionsDto input_S=func.calculateValue(inp.getItfunctions(), input_A, input_B);
-		AssetClassificationDto input_T= help.itspendcalculation(input_G, input_H, input_I, input_J);
 		
 		TotalSavingsModel2BDto input_a= model.model2bcalculation(input_F, input_L, input_M, input_R);
 		RunOpexModelingFitshoreDto input_b= model.runfit_calculation(input_a);
@@ -132,7 +130,6 @@ public class UserInputService {
 		final_json.setOutsourceonsite(input_Q);
 		final_json.setTotalfitshore(input_R);
 		final_json.setItfunctions(input_S);
-		final_json.setAsset(input_T);
 		
 		final_json.setTotal2B(input_a);
 		final_json.setRunopexfit(input_b);
@@ -233,16 +230,16 @@ public class UserInputService {
 	
 //User Details(First page)
 	
-	public UserInputDto userDetails(UserDetailsDto inp) {
-		UserInputDto obj=inputRepo.findByUserIdAndProjectName(inp.getUserId(),inp.getProjectName());
-		
-		return obj;
-	}
+//	public UserInputDto userDetails(UserDetailsDto inp) {
+//		UserInputDto obj=inputRepo.findByUserIdAndProjectName(inp.getUserId(),inp.getProjectName());
+//		
+//		return obj;
+//	}
 
 
-	public Optional<UserDetailsDto> getByDetailsId(String detalsid) {
-		return detailRepo.findById(detalsid);
-	}
+//	public Optional<UserDetailsDto> getByDetailsId(String detalsid) {
+//		return detailRepo.findById(detalsid);
+//	}
 
 
 	public UserInputDto get_byProjectName(String projectname) {

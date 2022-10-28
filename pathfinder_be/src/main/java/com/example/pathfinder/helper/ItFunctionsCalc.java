@@ -9,7 +9,7 @@ import com.example.pathfinder.dto.ItPersonnelDto;
 @Component
 public class ItFunctionsCalc {
 
-	//19-pathfinder_it_functions
+//19-pathfinder_it_functions
 
 	public ItFunctionsDto calculateValue(ItFunctionsDto funct,InputTablesDto inp,ItPersonnelDto itp) {
 		ItFunctionsDto obj=funct;
@@ -66,4 +66,6 @@ public class ItFunctionsCalc {
 		obj.setTotal_fte_spread_value(obj.getData_center_fte_spread_value()+obj.getEnd_user_computing_fte_spread_value()+obj.getIt_service_desk_fte_spread_value()+obj.getNetwork_fte_spread_value()+obj.getApplication_enhance_fte_spread_value()+obj.getApplication_support_fte_spread_value()+obj.getIt_management_fte_spread_value());
 		return obj;
 	}
+
+
 }

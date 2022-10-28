@@ -16,7 +16,7 @@ public class ItSpendOnRunPersonnelDto {
 	private String id;
 	private long itspend_baseline;
 	private long total_itSpendWithInflation;
-    private double total_cotClientShare;
+    private long total_cotClientShare;
     private long total_yearlyRunRate;
 	
 	
