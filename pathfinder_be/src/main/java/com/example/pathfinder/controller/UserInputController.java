@@ -3,6 +3,7 @@ package com.example.pathfinder.controller;
 import java.util.List;
 
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,20 +95,6 @@ public class UserInputController {
 	        return ResponseEntity.ok(input);
 	        
 	    }
-
-//User Details(First page)
-	 
-//	 @PostMapping("/details")
-//	   public ResponseEntity<UserInputDto> userDetails(@RequestBody UserDetailsDto inp) {
-//		 UserInputDto input = userService.userDetails(inp);
-//	       return ResponseEntity.ok(input);    
-//	   }
-	 
-//	 @GetMapping("/details/{detalsid}")    
-//	   public ResponseEntity<UserDetailsDto> getByDetailsId(@PathVariable String detalsid) {   
-//	    Optional<UserDetailsDto> inp2 = userService.getByDetailsId(detalsid); 
-//	 		return new ResponseEntity<>(inp2.get(), HttpStatus.OK);
-//	 	}
 	 
 	 
 	 

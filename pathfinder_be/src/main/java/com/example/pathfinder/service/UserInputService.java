@@ -2,6 +2,7 @@ package com.example.pathfinder.service;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,6 @@ import com.example.pathfinder.helper.ItFunctionsCalc;
 import com.example.pathfinder.helper.ModelOptionsCalc;
 import com.example.pathfinder.helper.RunItOutsourceCalc;
 import com.example.pathfinder.helper.WaterfallCalc;
-import com.example.pathfinder.repo.UserDetailsRepo;
 import com.example.pathfinder.repo.UserInputRepo;
 import com.example.pathfinder.repo.UserValuesRepo;
 import com.example.pathfinder.response.ProjectNameOnly;
@@ -66,8 +66,6 @@ public class UserInputService {
 	WaterfallCalc waterfall;
 	@Autowired
 	UserValuesRepo valueRepo;
-	@Autowired
-	UserDetailsRepo detailRepo;
 
 // EXISTING USER json
 	
@@ -199,6 +197,13 @@ public class UserInputService {
 		return inpu_only;
 		
 	}
+	
+	public UserInputDto get_byProjectName(String projectname) {
+		UserInputDto obj=inputRepo.findByProjectName(projectname);
+	
+		return obj;
+	}
+
 
 	public ProjectNameOnly getAllProjectNAme_only() {
         List<UserInputDto> obj=inputRepo.findAll();
@@ -225,31 +230,5 @@ public class UserInputService {
 	
 		return obj1;
 	}
-	
-	
-	
-//User Details(First page)
-	
-//	public UserInputDto userDetails(UserDetailsDto inp) {
-//		UserInputDto obj=inputRepo.findByUserIdAndProjectName(inp.getUserId(),inp.getProjectName());
-//		
-//		return obj;
-//	}
-
-
-//	public Optional<UserDetailsDto> getByDetailsId(String detalsid) {
-//		return detailRepo.findById(detalsid);
-//	}
-
-
-	public UserInputDto get_byProjectName(String projectname) {
-		UserInputDto obj=inputRepo.findByProjectName(projectname);
-	
-		return obj;
-	}
-
-
-
-
 	
 }
