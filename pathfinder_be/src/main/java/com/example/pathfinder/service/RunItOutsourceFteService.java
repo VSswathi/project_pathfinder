@@ -70,7 +70,6 @@ public class RunItOutsourceFteService {
 	}
 	
 	public List<RunItOutsourceFteDto> getAllRunItOutsource() {
-		// TODO Auto-generated method stub
 		return itrunRepo.findAll();
 	}
 
@@ -89,7 +88,6 @@ public class RunItOutsourceFteService {
 	}
 
 	public List<RunItOutsourceCostsDto> getAllRunCosts() {
-		// TODO Auto-generated method stub
 		return itcostRepo.findAll();
 	}
 
@@ -108,7 +106,6 @@ public class RunItOutsourceFteService {
 	}
 	
 	public List<ItPersonnelFitModelDto> getAllFitModel() {
-		// TODO Auto-generated method stub
 		return fitRepo.findAll();
 	}
 	 //17-pathfinder_asset_outsource_onsite
@@ -126,7 +123,6 @@ public class RunItOutsourceFteService {
 	}
 	
 	public List<AssetOutsourceOnsiteDto> getAllOutsourceOnsite() {
-		// TODO Auto-generated method stub
 		return outsourceonsiteRepo.findAll();
 	}
 	 //18-pathfinder_total_outsource_fitshore
@@ -145,7 +141,7 @@ public class RunItOutsourceFteService {
 	}
 
 	public List<TotalOutsourcingFitshoreDto> getAllOutsourceFit() {
-		// TODO Auto-generated method stub
+
 		return totalRepo.findAll();
 	}
 

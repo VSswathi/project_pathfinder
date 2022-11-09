@@ -3,6 +3,7 @@ package com.example.pathfinder.helper;
 import java.util.ArrayList;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,6 @@ import com.example.pathfinder.dto.ItSpendOnRunPersonnelDto;
 import com.example.pathfinder.dto.ItSpendOnRunPersonnelYear;
 import com.example.pathfinder.dto.SavingsOptimizationDto;
 import com.example.pathfinder.dto.SavingsOptimizationYear;
-import com.example.pathfinder.dto.YearBasedOutsourcingDto;
 import com.example.pathfinder.repo.CostofTransformationRepo;
 
 @Component
@@ -420,7 +420,6 @@ public class AssetClassificationCalc {
     
      ArrayList<ItSpendOnRunPersonnelYear> yrCalc=new ArrayList<ItSpendOnRunPersonnelYear>();
    
-     long secondyear=0;
      long itspent_with_inflation_total=0;
      long cost_of_transformation_clint_total=0;
      long yearly_run_rate_total=0;

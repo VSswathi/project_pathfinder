@@ -89,7 +89,6 @@ public class AssetClassificationService {
 	}
 	
 	public Optional<AssetClassificationHardwareDto> getByHardwareId(String hardwareid) {
-		// TODO Auto-generated method stub
 		return hardRepo.findById(hardwareid);
 	}
 	
@@ -225,7 +224,6 @@ public class AssetClassificationService {
 	}
 	
 	public List<AssetClassificationDto> getAllItSpendAsset() {
-		// TODO Auto-generated method stub
 		return assetRepo.findAll();
 	}
 	//12-pathfinder_saving_optimization
@@ -245,7 +243,6 @@ public class AssetClassificationService {
 	}
 	
 	public List<SavingsOptimizationDto> getAllSavingsLevers() {
-		// TODO Auto-generated method stub
 		return savingRepo.findAll();
 		}
 	//13-pathfinder_itspend_run_personnel
@@ -260,24 +257,8 @@ public class AssetClassificationService {
 	}
 
 	public List<ItSpendOnRunPersonnelDto> getAllRunPersonnel() {
-		// TODO Auto-generated method stub
 		return itrunRepo.findAll();
-	}
-
-
-
-
-
-	
-
-
-
-
-
-	
-
-	
-	
+	}	
 
 	
 }

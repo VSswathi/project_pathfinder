@@ -2,16 +2,11 @@ package com.example.pathfinder.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.pathfinder.dto.AssetClassificationHardwareDto;
-import com.example.pathfinder.dto.AssetClassificationHostedCbsDto;
-import com.example.pathfinder.dto.AssetClassificationManagedServicesDto;
-import com.example.pathfinder.dto.AssetClassificationSoftwareDto;
 import com.example.pathfinder.dto.AssetOutsourceOnsiteDto;
-import com.example.pathfinder.dto.CostofTransformationDto;
-import com.example.pathfinder.dto.ItPersonnelDto;
 import com.example.pathfinder.dto.ItRunSpendDto;
 import com.example.pathfinder.dto.ItSpendOnRunPersonnelDto;
 import com.example.pathfinder.dto.RunOpexModelingFitshoreDto;
@@ -63,7 +58,7 @@ public class ModelOptionsService {
 	@Autowired
 	RunOpexModelling2ARepo model2aRepo;
 
-	//20-pathfinder_total_savings_model2b
+//20-pathfinder_total_savings_model2b
 	public TotalSavingsModel2BDto model2b_calculation(String itrunspendid1, String savingoptid2,
 			String itspendrunpersid3, String totaloutsourcefitid4) {
 		ItRunSpendDto run=runRepo.findById(itrunspendid1).get();
@@ -71,17 +66,16 @@ public class ModelOptionsService {
 		ItSpendOnRunPersonnelDto spend=spendRepo.findById(itspendrunpersid3).get();
 		TotalOutsourcingFitshoreDto fit=fitRepo.findById(totaloutsourcefitid4).get();
 		
-		
 		TotalSavingsModel2BDto obj2=modelHelp.model2bcalculation(run,save, spend,fit);
 		obj2= totalRepo.save(obj2);
 		return obj2;
 	}
 
 	public List<TotalSavingsModel2BDto> getAllTotalModel2b() {
-		// TODO Auto-generated method stub
 		return totalRepo.findAll();
 	}
-	//21-pathfinder_run_opex_fit_shore
+	
+//21-pathfinder_run_opex_fit_shore
 	public RunOpexModelingFitshoreDto runfit_calculation(String totalsavingsmodel2bid1) {
 		TotalSavingsModel2BDto fit=totalRepo.findById(totalsavingsmodel2bid1).get();		
 		RunOpexModelingFitshoreDto obj2=modelHelp.runfit_calculation(fit);
@@ -89,11 +83,10 @@ public class ModelOptionsService {
 		return obj2;        
 	}
 	public List<RunOpexModelingFitshoreDto> getAllRunFit() {
-		// TODO Auto-generated method stub
 		return opexRepo.findAll();
 	}
 
-	//22-pathfinder_run_opex_model
+//22-pathfinder_run_opex_model
 	public RunOpexModellingDto runopex_calculation(String runopexfitid1) {
 		RunOpexModelingFitshoreDto fit=opexRepo.findById(runopexfitid1).get();		
 		RunOpexModellingDto obj2=modelHelp.runopex_calculation(fit);
@@ -102,7 +95,6 @@ public class ModelOptionsService {
 	}
 	
 	public List<RunOpexModellingDto> getAllRunOpex() {
-		// TODO Auto-generated method stub
 		return modelRepo.findAll();
 	}
 
@@ -122,7 +114,6 @@ public class ModelOptionsService {
 
 
 	public List<TotalSavingsModel2ADto> getAllModel2a() {
-		// TODO Auto-generated method stub
 		return total2aRepo.findAll();
 	}
 	
@@ -136,7 +127,6 @@ public class ModelOptionsService {
 	}
 	
 	public List<RunOpexModelingOutsourceDto> getAllRunOutsource() {
-		// TODO Auto-generated method stub
 		return opexoutsourceRepo.findAll();
 	}
 
@@ -149,7 +139,6 @@ public class ModelOptionsService {
 	}
 
 	public List<RunOpexModelling2ADto> getAllRunOpex2a() {
-		// TODO Auto-generated method stub
 		return model2aRepo.findAll();
 	}
 

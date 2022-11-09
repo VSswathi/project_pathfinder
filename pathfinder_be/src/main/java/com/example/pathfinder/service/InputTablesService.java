@@ -193,7 +193,6 @@ public ItRunSpendDto itRunSpend_calc(String id1, String id2, String id3) {
 
 
 public List<ItRunSpendDto> getAllItSpendCatId() {
-	// TODO Auto-generated method stub
 	return runRepo.findAll();
 }
 
